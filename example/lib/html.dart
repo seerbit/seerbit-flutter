@@ -1,4 +1,5 @@
-import 'package:example/payloadModel.dart';
+
+import 'payloadModel.dart';
 
 String initRequest(PayloadModel payload, String reportLink, String x) {
   String strVar = "";
@@ -56,3 +57,24 @@ String initRequest(PayloadModel payload, String reportLink, String x) {
 
   return strVar;
 }
+
+String initialHtml() => Uri.dataFromString(
+        initRequest(
+            PayloadModel(
+                currency: 'NGN',
+                email: "hftserve@gmail.com",
+                description: "Foxsod",
+                fullName: "Combs Combs",
+                country: "NG",
+                amount: "100",
+                callbackUrl: "callbackUrl",
+                publicKey: "SBTESTPUBK_Gq9XaRKyQ05LQ3XHR9NLNpxBgsmgGzg7",
+                // "SBPUBK_1ZAL1HXRQQFKHSHXAQ91KGGWEEUXZK4I",
+                narrator: ' ',
+                reportLink: "",
+                pocketRef: "",
+                vendorId: ""),
+            "==",
+            ''),
+        mimeType: 'type/html')
+    .toString();
