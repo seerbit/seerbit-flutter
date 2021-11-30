@@ -1,14 +1,8 @@
-import 'dart:convert';
-import 'dart:io';
-
+import 'package:example/payloadModel.dart';
+import 'package:example/seerbit_bottomsheet.dart';
+import 'package:example/snackbar.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-
-import 'html.dart';
-import 'payloadModel.dart';
-import 'snackbar.dart';
 
 void main() {
   runApp(MyApp());
@@ -38,128 +32,85 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int amount = 100;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Material(
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[SeerbitBottomSheet()],
-        ),
-      ),
-    );
-  }
-}
-
-class SeerbitBottomSheet extends StatefulWidget {
-  const SeerbitBottomSheet({Key? key}) : super(key: key);
-
-  @override
-  _SeerbitBottomSheetState createState() => _SeerbitBottomSheetState();
-}
-
-class _SeerbitBottomSheetState extends State<SeerbitBottomSheet> {
-  String response = 'Scales';
-  String? mimeType = 'text/html';
-  String currentUrl = '';
-  late WebViewController webViewController, secondWebViewController;
-  bool showFirst = true;
-  final Set<Factory<OneSequenceGestureRecognizer>> gestureRecognizers =
-      [Factory(() => EagerGestureRecognizer())].toSet();
-
-  @override
-  void initState() {
-    super.initState();
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    return Container(
-      height: height,
-      width: width,
-      child: Stack(
-        children: [
-          Visibility(
-            visible: showFirst,
-            child: Column(
-              children: [
-                Flexible(
-                  child: Container(
-                    height: height,
-                    width: width,
-                    color: Colors.white,
-                    padding: EdgeInsets.all(width * .07),
-                    child: WebView(
-                        gestureRecognizers: gestureRecognizers,
-                        javascriptMode: JavascriptMode.unrestricted,
-                        onWebViewCreated: (controller) =>
-                            webViewController = controller,
-                        javascriptChannels: Set.from([
-                          JavascriptChannel(
-                              name: 'Success',
-                              onMessageReceived: (JavascriptMessage message) {
-                                setState(() {
-                                  response =
-                                      jsonDecode(message.message)['response'];
-                                });
-                                displaySnack(context, text: response);
-                                webViewController.loadUrl(response);
-                              }),
-                          JavascriptChannel(
-                              name: 'Failure',
-                              onMessageReceived: (JavascriptMessage message) {
-                                setState(() {
-                                  response =
-                                      jsonDecode(message.message)['response'];
-                                });
-                                displaySnack(context, text: response);
-                                webViewController.loadUrl(response);
-                              })
-                        ]),
-                        navigationDelegate: (nav) {
-                          if (nav.url.contains('seerbitapigateway')) {
-                            displaySnack(context, text: 'Somewhere');
-                          } else {
-                            displaySnack(context, text: 'Nowehre');
-                          }
-                          return NavigationDecision.navigate;
-                        },
-                        onPageFinished: (_) {
-                          setState(() {
-                            mimeType = 'text/css';
-                          });
-                        },
-                        initialUrl: Uri.dataFromString(
-                                initRequest(
-                                    PayloadModel(
-                                        currency: 'NGN',
-                                        email: "hftserve@gmail.com",
-                                        description: "Foxsod",
-                                        fullName: "Combs Combs",
-                                        country: "NG",
-                                        amount: "100",
-                                        callbackUrl: "callbackUrl",
-                                        publicKey:
-                                            // "SBTESTPUBK_Gq9XaRKyQ05LQ3XHR9NLNpxBgsmgGzg7",
-                                            "SBPUBK_1ZAL1HXRQQFKHSHXAQ91KGGWEEUXZK4I",
-                                        narrator: 'seerbit-react-native',
-                                        reportLink: "",
-                                        pocketRef: "",
-                                        vendorId: ""),
-                                    "==",
-                                    ''),
-                                mimeType: mimeType)
-                            .toString()),
-                  ),
-                ),
-              ],
+          children: <Widget>[
+            Text('Sample Checkout'),
+            SizedBox(height: 10),
+            Text(
+              '$amount naira',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
             ),
-          ),
-          Center(child: Text(mimeType!))
-        ],
+            SizedBox(height: 10),
+            Container(
+              height: 98,
+              width: double.infinity,
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.blue.withOpacity(.1),
+              ),
+              child: Column(
+                children: [
+                  Text('Product 1 @ 10 naira each'),
+                  Text('A description of product 1'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () => setState(() {
+                          if (amount >= 10) amount -= 10;
+                        }),
+                        icon: Icon(Icons.remove),
+                      ),
+                      IconButton(
+                        onPressed: () => setState(() => amount += 10),
+                        icon: Icon(Icons.add),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            TextButton(
+                onPressed: () => showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) => SeerbitBottomSheet(
+                        onFailure: () =>
+                            displaySnack(context, text: 'Payment Failed'),
+                        onSuccess: () =>
+                            displaySnack(context, text: 'Payment Successful'),
+                        payload: PayloadModel(
+                            currency: 'NGN',
+                            email: "hftserve@gmail.com",
+                            description: "Foxsod",
+                            fullName: "Combs Combs",
+                            country: "NG",
+                            amount: "$amount",
+                            callbackUrl: "callbackUrl",
+                            publicKey:
+                                "SBPUBK_1ZAL1HXRQQFKHSHXAQ91KGGWEEUXZK4I",
+                            narrator: 'seerbit-react-native',
+                            reportLink: "",
+                            pocketRef: "",
+                            vendorId: ""))),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.red),
+                ),
+                child: Text(
+                  'Checkout',
+                  style: TextStyle(color: Colors.white),
+                )),
+          ],
+        ),
       ),
     );
   }
