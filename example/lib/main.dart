@@ -1,8 +1,7 @@
-import 'package:example/payloadModel.dart';
-import 'package:example/seerbit_bottomsheet.dart';
 import 'package:example/snackbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:seerbit_flutter/seerbit_flutter.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,7 +31,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int amount = 100;
+  int amount = 110;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
