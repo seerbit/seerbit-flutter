@@ -21,7 +21,7 @@ class PayloadModel {
     required this.amount,
     required this.callbackUrl,
     required this.publicKey,
-    required this.narrator,
+    this.narrator = 'seerbit-react-native',
     required this.reportLink,
     required this.pocketRef,
     required this.vendorId,
@@ -36,7 +36,6 @@ class PayloadModel {
       amount: json["Amount"],
       callbackUrl: json["CallbackUrl"],
       publicKey: json["PublicKey"],
-      narrator: json["Narrator"],
       reportLink: json["ReportLink"],
       pocketRef: json["PocketRef"],
       vendorId: json["VendorId"]);
