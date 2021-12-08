@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,7 @@ class _SeerbitBottomSheetState extends State<SeerbitBottomSheet> {
       width: width,
       child: Stack(
         children: [
+          CircularProgressIndicator(),
           Column(
             children: [
               Flexible(
@@ -97,6 +99,9 @@ class _SeerbitBottomSheetState extends State<SeerbitBottomSheet> {
                         });
                       },
                       onPageStarted: (_) {
+                        setState(() => isLoading = true);
+                      },
+                      onProgress: (_) {
                         setState(() => isLoading = true);
                       },
                       initialUrl: Uri.dataFromString(
