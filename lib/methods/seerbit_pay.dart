@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:seerbit_flutter/display/seerbit_bottom_sheet.dart';
-import 'package:seerbit_flutter/display/seerbit_snack.dart';
 import 'package:seerbit_flutter/models/payload.dart';
 
 class SeerBitPayment {
@@ -11,10 +10,6 @@ class SeerBitPayment {
         context: context,
         isScrollControlled: true,
         builder: (context) => SeerbitBottomSheet(
-            onFailure: onFailure ??
-                () => displaySnack(context, text: 'Payment Failed'),
-            onSuccess: onFailure ??
-                () => displaySnack(context, text: 'Payment Successful'),
-            payload: payload));
+            onFailure: onFailure, onSuccess: onSuccess, payload: payload));
   }
 }

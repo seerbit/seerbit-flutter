@@ -40,11 +40,10 @@ String initRequest(PayloadModel payload, String reportLink, String x) {
   strVar += "            },";
   strVar += "                function callback(response) {";
   strVar += "                    var resp = { event: 'callback', response };";
-  strVar +=
-      "                    window.Success.postMessage(JSON.stringify(resp))";
+  strVar += "                     Success.postMessage(JSON.stringify(resp))";
   strVar += "                },";
   strVar += "                function close(close) {";
-  strVar += "                    var resp = { event: 'cancelled' };";
+  strVar += "                    var resp = { event: 'cancelled', };";
   strVar +=
       "                    window.Failure.postMessage(JSON.stringify(resp))";
   strVar += "                })";

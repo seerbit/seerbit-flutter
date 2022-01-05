@@ -5,37 +5,23 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:seerbit_flutter/models/payload.dart';
-import 'package:seerbit_flutter/utilities/checkForPublicKey.dart';
-import 'package:seerbit_flutter/utilities/initiateRequest.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class SeerbitBottomSheet extends StatefulWidget {
-  const SeerbitBottomSheet(
-      {Key? key,
-      required this.payload,
-      this.onFailure,
-      this.onSuccess,
-      this.closeOnFinish = true})
+class SecondWebview extends StatefulWidget {
+  const SecondWebview({Key? key, this.url = 'wwww.google.com'})
       : super(key: key);
-
-  final Function()? onSuccess;
-  final Function()? onFailure;
-  final bool closeOnFinish;
-  final PayloadModel payload;
-
+  final String url;
   @override
-  _SeerbitBottomSheetState createState() => _SeerbitBottomSheetState();
+  _SecondWebviewState createState() => _SecondWebviewState();
 }
 
-class _SeerbitBottomSheetState extends State<SeerbitBottomSheet> {
+class _SecondWebviewState extends State<SecondWebview> {
   String currentUrl = '';
   final Set<Factory<OneSequenceGestureRecognizer>> gestureRecognizers =
       [Factory(() => EagerGestureRecognizer())].toSet();
 
   bool isInitialized = false;
   bool isLoading = false;
-  String? mimeType = 'text/html';
   String response = 'Scales';
   String currentObject = '';
   String event = 'Events';
@@ -105,6 +91,8 @@ class _SeerbitBottomSheetState extends State<SeerbitBottomSheet> {
                                       r"^((ftp|http|https):\/\/)|www\.?([a-zA-Z]+)\.([a-zA-Z]{2,})\$\/")
                                   .hasMatch(response)) {
                                 webViewController.loadUrl(response);
+                              } else {
+                                Navigator.pop(context);
                               }
                             })
                       ]),
@@ -113,7 +101,6 @@ class _SeerbitBottomSheetState extends State<SeerbitBottomSheet> {
                       },
                       onPageFinished: (_) {
                         setState(() {
-                          mimeType = 'text/css';
                           isLoading = false;
                           webViewController.currentUrl().then(
                               (value) => currentObject = value.toString());
@@ -129,11 +116,7 @@ class _SeerbitBottomSheetState extends State<SeerbitBottomSheet> {
                       onProgress: (_) {
                         setState(() => isLoading = true);
                       },
-                      initialUrl: Uri.dataFromString(
-                              initRequest(widget.payload, "==", ''),
-                              encoding: Encoding.getByName('utf-8'),
-                              mimeType: mimeType)
-                          .toString()),
+                      initialUrl: widget.url),
                 ),
               ),
             ],
@@ -143,50 +126,6 @@ class _SeerbitBottomSheetState extends State<SeerbitBottomSheet> {
                 alignment: Alignment.bottomCenter,
                 child: Text('Reponse:$event')),
           ),
-          isInitialized
-              ? Positioned.fill(
-                  bottom: height * .06,
-                  child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: FutureBuilder<String?>(
-                          future: webViewController.currentUrl(),
-                          builder: (context, snapshot) {
-                            return snapshot.data != null
-                                ? Visibility(
-                                    visible: containsPublicKey(
-                                        snapshot.data!, widget.payload),
-                                    child: TextButton(
-                                        onPressed: () async => Future.delayed(
-                                                Duration(milliseconds: 10),
-                                                isSuccessful(snapshot.data!)
-                                                    ? widget.onSuccess
-                                                    : widget.onFailure)
-                                            .then((value) =>
-                                                widget.closeOnFinish
-                                                    ? Navigator.pop(context)
-                                                    : null),
-                                        child: SizedBox(
-                                          width: width * .8,
-                                          height: height * .07,
-                                          child: Material(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: Center(
-                                              child: Text(
-                                                'Close',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: width * .05),
-                                              ),
-                                            ),
-                                          ),
-                                        )),
-                                  )
-                                : SizedBox();
-                          })),
-                )
-              : SizedBox(),
           Center(child: isLoading ? CircularProgressIndicator() : Container()),
           Positioned(
             top: height * .05,

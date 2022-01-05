@@ -1,4 +1,3 @@
-import 'package:example/snackbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:seerbit_flutter/seerbit_flutter.dart';
@@ -31,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int amount = 110;
+  int amount = 1;
   bool isLoading = false;
 
   @override
@@ -136,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   width: width * .03,
                 ),
-                Text('₦${amount * 10} ',
+                Text('₦${amount} ',
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
               ],
@@ -147,21 +146,23 @@ class _MyHomePageState extends State<MyHomePage> {
                       context,
                       PayloadModel(
                           currency: 'NGN',
-                          email: "hftserve@gmail.com",
-                          description: "Foxsod",
-                          fullName: "Combs Combs",
+                          email: "hello@gmail.com",
+                          description: "Sneakers",
+                          fullName: "General Zod",
                           country: "NG",
-                          amount: "${amount * 10}",
+                          amount: "$amount",
                           callbackUrl: "callbackUrl",
-                          publicKey: "SBPUBK_1ZAL1HXRQQFKHSHXAQ91KGGWEEUXZK4I",
-                          narrator: 'seerbit-react-native',
-                          reportLink: "",
+                          publicKey:
+                              "SBTESTPUBK_Gq9XaRKyQ05LQ3XHR9NLNpxBgsmgGzg7",
+                          // "SBPUBK_1ZAL1HXRQQFKHSHXAQ91KGGWEEUXZK4I",
+                          // narrator: 'seerbit-react-native',
+                          // reportLink: "",
                           pocketRef: "",
-                          vendorId: ""),
-                      onFailure: () =>
-                          displaySnack(context, text: 'Payment Failed'),
-                      onSuccess: () =>
-                          displaySnack(context, text: 'Payment Successful'),
+                          vendorId: "Freedah"),
+                      // onFailure: () =>
+                      //     displaySnack(context, text: 'Payment Failed'),
+                      // onSuccess: () =>
+                      //     displaySnack(context, text: 'Payment Successful'),
                     ),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.red),
@@ -176,3 +177,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+  
