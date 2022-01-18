@@ -10,6 +10,7 @@ class CheckOut extends StatelessWidget {
         onPressed: () => SeerBitPayment.checkout(
               context,
               PayloadModel(
+                transRef: '',
                   currency: 'NGN',
                   email: "hftserve@gmail.com",
                   description: "Foxsod",

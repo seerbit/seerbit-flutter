@@ -9,6 +9,7 @@ class PayloadModel {
       publicKey,
       narrator,
       pocketRef,
+      transRef,
       vendorId;
   final String? reportLink;
   PayloadModel({
@@ -18,6 +19,7 @@ class PayloadModel {
     required this.fullName,
     required this.country,
     required this.amount,
+    required this.transRef,
     required this.callbackUrl,
     required this.publicKey,
     this.narrator = 'seerbit-react-native',
@@ -29,6 +31,7 @@ class PayloadModel {
   factory PayloadModel.fromJson(Map json) => PayloadModel(
       currency: json["Currency"],
       email: json["Email"],
+      transRef: json["TransRef"],
       description: json["Description"],
       fullName: json['FullName'],
       country: json["Country"],

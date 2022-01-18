@@ -1,8 +1,7 @@
 import 'dart:convert';
-import 'dart:math';
 
-import 'package:exampletwo/payload.dart';
 import 'package:flutter/material.dart';
+import 'package:seerbit_flutter/new/payload.dart';
 
 String initRequest(PayloadModel model, String reportLink, String x) {
   return """
@@ -26,11 +25,11 @@ String initRequest(PayloadModel model, String reportLink, String x) {
                                   currency: "${model.currency}",
                                   description: "${model.description}",
                                   country: "${model.country}",
-                                  email:"hulu@netflix.com",
+                                  email:"${model.email}",
                                   amount: "${model.amount}",
                                   callbackurl: "${model.callbackUrl}",
                                   narrator:"seerbit-react-native",
-                                  public_key: "SBTESTPUBK_Gq9XaRKyQ05LQ3XHR9NLNpxBgsmgGzg7"
+                                  public_key: "${model.publicKey}"
                                   //"SBPUBK_1ZAL1HXRQQFKHSHXAQ91KGGWEEUXZK4I"
                                   // "SBTESTPUBK_Gq9XaRKyQ05LQ3XHR9NLNpxBgsmgGzg7"
                                   // replace this with your own public key
@@ -56,23 +55,10 @@ String initRequest(PayloadModel model, String reportLink, String x) {
                                   """;
 }
 
-Uri createUri(pAYL) {
+Uri createUri(PayloadModel payload) {
   return Uri.dataFromString(initRequest(payload, "==", ''),
       encoding: Encoding.getByName('utf-8'), mimeType: 'text/html');
 }
-
-PayloadModel payload = PayloadModel(
-    currency: 'NGN',
-    email: "hello@gmail.com",
-    description: "Sneakers",
-    fullName: "General Zod",
-    country: "NG",
-    amount: "100",
-    transRef: Random().nextInt(500000).toString(),
-    callbackUrl: "callbackUrl",
-    publicKey: "SBTESTPUBK_Gq9XaRKyQ05LQ3XHR9NLNpxBgsmgGzg7",
-    pocketRef: "",
-    vendorId: "Freedah");
 
 ///Creates a simple snackbr
 void displaySnack(BuildContext context,
