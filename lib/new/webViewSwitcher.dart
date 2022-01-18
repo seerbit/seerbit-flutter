@@ -7,8 +7,14 @@ import 'webViewOne.dart';
 import 'webViewTwo.dart';
 
 class WebViewSwitcher extends StatefulWidget {
-  const WebViewSwitcher({Key? key, required this.payload}) : super(key: key);
+  const WebViewSwitcher(
+      {Key? key,
+      required this.payload,
+      required this.onSuccess,
+      required this.onCancel})
+      : super(key: key);
   final PayloadModel payload;
+  final ValueSetter<Map> onSuccess, onCancel;
   @override
   _WebViewSwitcherState createState() => _WebViewSwitcherState();
 }
@@ -29,8 +35,11 @@ class _WebViewSwitcherState extends State<WebViewSwitcher> {
       width: width,
       child: IndexedStack(
         children: [
-          WebViewOne(payload: widget.payload),
-          WebViewTwo(payload:widget.payload),
+          WebViewOne(
+              payload: widget.payload,
+              onSuccess: widget.onSuccess,
+              onCancel: widget.onCancel),
+          WebViewTwo(payload: widget.payload),
           Text(
             webViewState.currentUrl,
             style: TextStyle(fontSize: 12),

@@ -1,9 +1,13 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:provider/provider.dart';
 import 'package:seerbit_flutter/new/navigationConditions.dart';
 import 'package:seerbit_flutter/new/payload.dart';
 import 'package:seerbit_flutter/new/state.dart';
+
+import 'req.dart';
 
 class WebViewTwo extends StatefulWidget {
   const WebViewTwo({Key? key, required this.payload}) : super(key: key);
@@ -41,85 +45,68 @@ class _WebViewTwoState extends State<WebViewTwo> {
   Widget build(BuildContext context) {
     WebViewState webViewState = Provider.of<WebViewState>(context);
     return WillPopScope(
-      onWillPop: () async {
-        webViewController!.goBack();
-        return false;
-      },
-      child: Scaffold(
-          appBar: AppBar(title: Text("SeerBit WebView 2")),
-          body: Column(children: <Widget>[
-            WillPopScope(
-              onWillPop: () async {
-                webViewController!.goBack();
-                return false;
-              },
-              child: Expanded(
-                child: Stack(
-                  children: [
-                    InAppWebView(
-                      initialUrlRequest:
-                          URLRequest(url: Uri.parse(webViewState.currentUrl)),
-                      initialOptions: options,
-                      // initialData: InAppWebViewInitialData(data: ),
-                      onWebViewCreated: (controller) {
-                        webViewController = controller;
-                        webViewState.setController(controller);
+        onWillPop: () async {
+          webViewController!.goBack();
+          return false;
+        },
+        child: Column(children: <Widget>[
+          WillPopScope(
+            onWillPop: () async {
+              webViewController!.goBack();
+              return false;
+            },
+            child: Expanded(
+              child: Stack(
+                children: [
+                  InAppWebView(
+                    initialUrlRequest:
+                        URLRequest(url: Uri.parse(webViewState.currentUrl)),
+                    initialOptions: options,
+                    gestureRecognizers:
+                        [Factory(() => EagerGestureRecognizer())].toSet(),
+                    // initialData: InAppWebViewInitialData(data: ),
+                    onWebViewCreated: (controller) {
+                      webViewController = controller;
+                      webViewState.setController(controller);
+                    },
 
-                        controller.addJavaScriptHandler(
-                            handlerName: 'success',
-                            callback: (_) {
-                              print(_);
-                              webViewState.setResponse(_);
-                            });
-                        controller.addJavaScriptHandler(
-                            handlerName: 'failure',
-                            callback: (_) {
-                              print(_);
-                              webViewState.setResponse(_);
-                            });
-                      },
+                    onProgressChanged: (controller, progress) {
+                      if (progress == 100) {}
+                      setState(() {
+                        this.progress = progress / 100;
+                        urlController.text = this.url;
+                      });
+                    },
+                    onUpdateVisitedHistory:
+                        (controller, url, androidIsReload) async {
+                      webViewState.setReportLink(url.toString());
+                      if (shouldSwitchView(url.toString(), widget.payload)) {
+                        webViewState.setReportLink(url.toString());
+                        webViewState.controllerOne!.loadUrl(
+                            urlRequest: URLRequest(
+                                url: createUri(widget.payload, webViewState)));
 
-                      onProgressChanged: (controller, progress) {
-                        if (progress == 100) {}
-                        setState(() {
-                          this.progress = progress / 100;
-                          urlController.text = this.url;
-                        });
-                      },
-                      onUpdateVisitedHistory:
-                          (controller, url, androidIsReload) async {
-                        if (shouldSwitchView(url.toString(), widget.payload)) {
-                          webViewState.controllerOne!
-                              .loadUrl(urlRequest: URLRequest(url: url));
-
-                          webViewState.switchView(true);
-                        }
-                        setState(() {
-                          this.url = url.toString();
-                          urlController.text = this.url;
-                        });
-                      },
-                      onConsoleMessage: (controller, consoleMessage) {
-                        webViewState.setConsole(consoleMessage.message);
-                      },
-                    ),
-                    progress < 1.0
-                        ? Center(
-                            child: CircularProgressIndicator(value: progress))
-                        : Container(),
-                    // Center(
-                    //     child: FutureBuilder(
-                    //         future: webViewController?.getUrl(),
-                    //         initialData: "s",
-                    //         builder: (_, __) => Text(__.data.toString()))),
-                    // Center(
-                    //   child: Text(webViewState.response.toString()),
-                    // )
-                  ],
-                ),
+                        webViewState.switchView(true);
+                      }
+                      setState(() {
+                        this.url = url.toString();
+                        urlController.text = this.url;
+                      });
+                    },
+                    onConsoleMessage: (controller, consoleMessage) {
+                      print(consoleMessage.message);
+                      webViewState.setConsole(consoleMessage.message);
+                    },
+                  ),
+                  progress < 1.0
+                      ? Center(
+                          child: CircularProgressIndicator(value: progress))
+                      : Container(),
+                  // Center(child: Text(webViewState.reportLink.toString()))
+                ],
               ),
             ),
-          ])),
-    );
+          ),
+        ]));
   }
 }

@@ -5,8 +5,14 @@ import 'package:seerbit_flutter/new/state.dart';
 import 'package:seerbit_flutter/new/webViewSwitcher.dart';
 
 class SeerbitPayment extends StatefulWidget {
-  const SeerbitPayment({Key? key, required this.payload}) : super(key: key);
+  const SeerbitPayment(
+      {Key? key,
+      required this.payload,
+      required this.onSuccess,
+      required this.onCancel})
+      : super(key: key);
   final PayloadModel payload;
+  final ValueSetter<Map> onSuccess, onCancel;
   @override
   _SeerbitPaymentState createState() => _SeerbitPaymentState();
 }
@@ -21,6 +27,8 @@ class _SeerbitPaymentState extends State<SeerbitPayment> {
         ],
         child: WebViewSwitcher(
           payload: widget.payload,
+          onSuccess: widget.onSuccess,
+          onCancel: widget.onCancel,
         ));
   }
 }

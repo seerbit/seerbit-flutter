@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:seerbit_flutter/new/payload.dart';
+import 'package:seerbit_flutter/new/state.dart';
 
-String initRequest(PayloadModel model, String reportLink, String x) {
+String initRequest(
+    PayloadModel model, String reportLink, String x, WebViewState state) {
   return """
                                   <!DOCTYPE html>
                     <html lang="en">
@@ -27,22 +29,22 @@ String initRequest(PayloadModel model, String reportLink, String x) {
                                   country: "${model.country}",
                                   email:"${model.email}",
                                   amount: "${model.amount}",
+                                  close_prompt: false,
+                                  close_on_sucess: true,
                                   callbackurl: "${model.callbackUrl}",
                                   narrator:"seerbit-react-native",
+                                  // integrationSource : "mobile-sdk",
+                                  "report_link":"${state.reportLink}",
                                   public_key: "${model.publicKey}"
                                   //"SBPUBK_1ZAL1HXRQQFKHSHXAQ91KGGWEEUXZK4I"
                                   // "SBTESTPUBK_Gq9XaRKyQ05LQ3XHR9NLNpxBgsmgGzg7"
                                   // replace this with your own public key
                                 },
                                 function callback(response) {
-                                  // console.log(response);
-                                  console.log(JSON.stringify(response)); /*response of transaction*/
                                    window.flutter_inappwebview
                                     .callHandler('success', JSON.stringify(response));
                                 },
                                 function close(close) {
-
-                                  console.log(close); /*transaction close*/
                                    window.flutter_inappwebview
                                     .callHandler('failure', JSON.stringify(response));
                                 }
@@ -55,8 +57,8 @@ String initRequest(PayloadModel model, String reportLink, String x) {
                                   """;
 }
 
-Uri createUri(PayloadModel payload) {
-  return Uri.dataFromString(initRequest(payload, "==", ''),
+Uri createUri(PayloadModel payload, WebViewState webViewState) {
+  return Uri.dataFromString(initRequest(payload, "==", '', webViewState),
       encoding: Encoding.getByName('utf-8'), mimeType: 'text/html');
 }
 
