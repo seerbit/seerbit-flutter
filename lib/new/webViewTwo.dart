@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:provider/provider.dart';
+import 'package:seerbit_flutter/new/navigationConditions.dart';
+import 'package:seerbit_flutter/new/payload.dart';
 import 'package:seerbit_flutter/new/state.dart';
 
 class WebViewTwo extends StatefulWidget {
-  const WebViewTwo({
-    Key? key,
-  }) : super(key: key);
-
+  const WebViewTwo({Key? key, required this.payload}) : super(key: key);
+  final PayloadModel payload;
   @override
   _WebViewTwoState createState() => new _WebViewTwoState();
 }
@@ -88,11 +88,11 @@ class _WebViewTwoState extends State<WebViewTwo> {
                       },
                       onUpdateVisitedHistory:
                           (controller, url, androidIsReload) async {
-                        if (url.toString().contains("TESTPUB")) {
-                          webViewController!
+                        if (shouldSwitchView(url.toString(), widget.payload)) {
+                          webViewState.controllerOne!
                               .loadUrl(urlRequest: URLRequest(url: url));
-                          await Future.delayed(Duration(seconds: 2))
-                              .then((value) => webViewState.switchView(true));
+
+                          webViewState.switchView(true);
                         }
                         setState(() {
                           this.url = url.toString();
@@ -112,9 +112,9 @@ class _WebViewTwoState extends State<WebViewTwo> {
                     //         future: webViewController?.getUrl(),
                     //         initialData: "s",
                     //         builder: (_, __) => Text(__.data.toString()))),
-                    Center(
-                      child: Text(webViewState.response.toString()),
-                    )
+                    // Center(
+                    //   child: Text(webViewState.response.toString()),
+                    // )
                   ],
                 ),
               ),

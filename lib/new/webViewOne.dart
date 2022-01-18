@@ -91,6 +91,7 @@ class _WebViewOneState extends State<WebViewOne> {
                     // initialData: InAppWebViewInitialData(data: ),
                     onWebViewCreated: (controller) {
                       webViewController = controller;
+                      webViewState.setControllerOne(controller);
 
                       controller.addJavaScriptHandler(
                           handlerName: 'success',
@@ -102,6 +103,7 @@ class _WebViewOneState extends State<WebViewOne> {
                             webViewState.setUrl(
                                 _[0].toString().substring(1, _[0].length - 1));
                             webViewState.switchView(false);
+
                             webViewState.controller!.loadUrl(
                                 urlRequest: URLRequest(
                                     url: Uri.parse(webViewState.currentUrl)));

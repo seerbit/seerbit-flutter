@@ -30,7 +30,7 @@ class _WebViewSwitcherState extends State<WebViewSwitcher> {
       child: IndexedStack(
         children: [
           WebViewOne(payload: widget.payload),
-          WebViewTwo(),
+          WebViewTwo(payload:widget.payload),
           Text(
             webViewState.currentUrl,
             style: TextStyle(fontSize: 12),

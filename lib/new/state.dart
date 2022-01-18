@@ -5,9 +5,11 @@ class WebViewState extends ChangeNotifier {
   String currentUrl = "";
   bool isShowingFirst = true;
   bool isLoading = false;
+  String reportLink = "";
   dynamic response = {};
   String consoleLog = "Console:";
   InAppWebViewController? controller;
+  InAppWebViewController? controllerOne;
   void switchView(bool value) {
     isShowingFirst = value;
     notifyListeners();
@@ -23,6 +25,11 @@ class WebViewState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setControllerOne(InAppWebViewController control) {
+    controllerOne = control;
+    notifyListeners();
+  }
+
   void setResponse(dynamic value) {
     response = value;
     notifyListeners();
@@ -35,6 +42,11 @@ class WebViewState extends ChangeNotifier {
 
   void setProgress(bool status) {
     isLoading = status;
+    notifyListeners();
+  }
+
+  void setReportLink(String link) {
+    reportLink = link;
     notifyListeners();
   }
 }
