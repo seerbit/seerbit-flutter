@@ -2,7 +2,7 @@
 <img width="500" valign="top" src="https://res.cloudinary.com/dpejkbof5/image/upload/v1620323718/Seerbit_logo_png_ddcor4.png" data-canonical-src="https://res.cloudinary.com/dpejkbof5/image/upload/v1620323718/Seerbit_logo_png_ddcor4.png" style="max-width:100%; ">
 </p>
 
-# Seerbit Flutter SDK
+# Seerbit Flutter WebView SDK
 
 Seerit Flutter SDK can be used to integrate the SeerBit payment gateway into your flutter application. 
 
@@ -31,22 +31,21 @@ class CheckOut extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () => SeerBitPayment.checkout(
+        onPressed: () => SeerbitMethod.startPayment(
               context,
               PayloadModel(
                   currency: 'NGN',
-                  email: "hftserve@gmail.com",
-                  description: "Foxsod",
-                  fullName: "Combs Combs",
+                  email: "dummyemail@mail.com",
+                  description: "A pair of new shoes",
+                  fullName: "Jane Doe",
                   country: "NG",
                   amount: "100",
-                  callbackUrl: "callbackUrl",
-                  publicKey: "YOUR PUBIC KEY",
-                  reportLink: "",
+                  callbackUrl: "your callback url",
+                  publicKey: "YOUR PUBLIC KEY",
                   pocketRef: "",
                   vendorId: ""),
-              onFailure: () {},
-              onSuccess: () {},
+              onSuccess: (response) {},
+              onCancel: (_) {}),
             ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.red),
@@ -59,6 +58,14 @@ class CheckOut extends StatelessWidget {
 }
 
 ```
+```OnSuccess``` you will recieve a Map containing the response from the payment request.
+
+
+During the payment process you can simply end the process by calling 
+```dart
+    SeerbitMethod.endPayment(context);
+```
+This ends the payment and removes the checkout view from the screen.
 ## Contributors
 <span>
 <a href="https://github.com/onuohasilver">

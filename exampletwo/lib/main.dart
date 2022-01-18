@@ -26,7 +26,7 @@ class SeerbitTest extends StatelessWidget {
                         payload: payload, onSuccess: (_) {
                       print(_);
                     }, onCancel: (_) {}),
-                child: Text("Trigger"))));
+                child: Text("Checkout"))));
   }
 }
 

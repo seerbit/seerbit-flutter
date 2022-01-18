@@ -6,7 +6,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:provider/provider.dart';
-import 'package:seerbit_flutter/new/navigationConditions.dart';
 import 'package:seerbit_flutter/new/payload.dart';
 import 'package:seerbit_flutter/new/req.dart';
 
@@ -112,10 +111,9 @@ class _WebViewOneState extends State<WebViewOne> {
                           callback: (_) {
                             webViewState.setResponse(_);
                             if (webViewState.reportLink == "about:blank") {
-                              if (shouldSwitchView(
-                                  _[0].toString().substring(1, _[0].length - 1),
-                                  model)) {
-                                print(_[0]);
+                              print(_[0]);
+                              if (_[0].toString().contains('code')) {
+                                widget.onSuccess(jsonDecode(_[0]));
                                 // webViewController!.loadUrl(
                                 //     urlRequest: URLRequest(
                                 //         url: Uri.parse(_[0]
@@ -149,6 +147,7 @@ class _WebViewOneState extends State<WebViewOne> {
                               webViewState.switchView(false);
                             } else {
                               widget.onCancel(jsonDecode(_[0]));
+                              Navigator.pop(context);
                               // print(jsonDecode(_[0]));
                             }
                           });
@@ -180,37 +179,11 @@ class _WebViewOneState extends State<WebViewOne> {
                       });
                     },
 
-                    onConsoleMessage: (controller, consoleMessage) {
-                      // String resp = consoleMessage.toJson().toString();
-                      // webViewState.setConsole(resp);
-                      // // print(consoleMessage.message);
-                    },
+                    onConsoleMessage: (controller, consoleMessage) {},
                   ),
                   progress < 1.0
                       ? LinearProgressIndicator(value: progress)
                       : Container(),
-                  // IgnorePointer(
-                  //     child: Center(
-                  //         child: Text(webViewState.reportLink.toString())))
-                  // Positioned.fill(
-                  //   bottom: 40,
-                  //   child: Align(
-                  //     alignment: Alignment.bottomCenter,
-                  //     child: TextButton(
-                  //       style: ButtonStyle(
-                  //         backgroundColor:
-                  //             MaterialStateProperty.all(Colors.red),
-                  //       ),
-                  //       onPressed: () {
-                  //         Navigator.pop(context);
-                  //       },
-                  //       child: Text(
-                  //         'Close',
-                  //         style: TextStyle(color: Colors.white),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // )
                 ],
               ),
             ),
