@@ -85,6 +85,9 @@ class _WebViewTwoState extends State<WebViewTwo> {
                         webViewState.controllerOne!.loadUrl(
                             urlRequest: URLRequest(
                                 url: createUri(widget.payload, webViewState)));
+                        webViewState.setReportLink('');
+
+                        ///FIXME:
 
                         webViewState.switchView(true);
                       }
