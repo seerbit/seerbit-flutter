@@ -9,6 +9,13 @@ Seerbit Flutter SDK can be used to integrate the SeerBit payment gateway into yo
 ## Requirements 
 Register for a merchant account on [Seerbit Merchant Dashboard](https://dashboard.seerbitapi.com) to get started. 
 
+```
+    Dart sdk: ">=2.12.0-0 <3.0.0"
+    Flutter: ">=1.22.2"
+    Android: minSdkVersion 17 and add support for androidx (see AndroidX Migration to migrate an existing app)
+    iOS: --ios-language swift, Xcode version >= 12
+```
+
 ```bash
 flutter pub get seerbit_flutter
 ```
@@ -39,6 +46,7 @@ class CheckOut extends StatelessWidget {
                   description: "A pair of new shoes",
                   fullName: "Jane Doe",
                   country: "NG",
+                  transRef: DateTime.now().toString(),
                   amount: "100",
                   callbackUrl: "your callback url",
                   publicKey: "YOUR PUBLIC KEY",
