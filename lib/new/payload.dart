@@ -1,3 +1,4 @@
+///Model for the Payload  that takes in all the needed payment data
 class PayloadModel {
   final String currency,
       email,

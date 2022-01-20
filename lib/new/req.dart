@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seerbit_flutter/new/payload.dart';
 import 'package:seerbit_flutter/new/state.dart';
 
+///Creates an HTML string with information from that parsed Payload model
 String initRequest(
     PayloadModel model, String reportLink, String x, WebViewState state) {
   return """
@@ -57,6 +58,7 @@ String initRequest(
                                   """;
 }
 
+///Generates A Uri from a raw HtML string
 Uri createUri(PayloadModel payload, WebViewState webViewState) {
   return Uri.dataFromString(initRequest(payload, "==", '', webViewState),
       encoding: Encoding.getByName('utf-8'), mimeType: 'text/html');

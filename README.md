@@ -4,7 +4,7 @@
 
 # Seerbit Flutter SDK
 
-Seerit Flutter SDK can be used to integrate the SeerBit payment gateway into your flutter application. 
+Seerbit Flutter SDK can be used to integrate the SeerBit payment gateway into your flutter application. 
 
 ## Requirements 
 Register for a merchant account on [Seerbit Merchant Dashboard](https://dashboard.seerbitapi.com) to get started. 

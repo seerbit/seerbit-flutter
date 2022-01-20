@@ -50,20 +50,6 @@ class _WebViewOneState extends State<WebViewOne> {
   @override
   void initState() {
     super.initState();
-
-    // pullToRefreshController = PullToRefreshController(
-    //   options: PullToRefreshOptions(
-    //     color: Colors.blue,
-    //   ),
-    //   onRefresh: () async {
-    //     if (Platform.isAndroid) {
-    //       webViewController?.reload();
-    //     } else if (Platform.isIOS) {
-    //       webViewController?.loadUrl(
-    //           urlRequest: URLRequest(url: await webViewController?.getUrl()));
-    //     }
-    //   },
-    // );
   }
 
   @override
@@ -97,9 +83,6 @@ class _WebViewOneState extends State<WebViewOne> {
                     initialUrlRequest: URLRequest(
                         url: createUri(widget.payload, webViewState)),
                     initialOptions: options,
-                    // pullToRefreshController: pullToRefreshController,
-//
-                    // initialData: InAppWebViewInitialData(data: ),
                     onWebViewCreated: (controller) {
                       webViewController = controller;
                       webViewState.setControllerOne(controller);
@@ -139,7 +122,7 @@ class _WebViewOneState extends State<WebViewOne> {
                                   .toString()
                                   .substring(1, _[0].length - 1));
                               webViewState.switchView(false);
-                            } else {u
+                            } else {
                               widget.onCancel(jsonDecode(_[0]));
                               Future.delayed(Duration(seconds: 3),
                                   () => Navigator.pop(context));
@@ -147,21 +130,16 @@ class _WebViewOneState extends State<WebViewOne> {
                             }
                           });
                     },
-
                     onLoadStart: (controller, url) {
                       webViewState.setProgress(true);
                     },
                     onLoadStop: (controller, url) async {
                       webViewState.setProgress(false);
                     },
-
                     onLoadError: (controller, url, code, message) {
                       webViewState.setProgress(false);
                     },
                     onProgressChanged: (controller, progress) {
-                      // if (progress == 100) {
-                      //   pullToRefreshController.endRefreshing();
-                      // }
                       setState(() {
                         this.progress = progress / 100;
                         urlController.text = this.url;
@@ -173,7 +151,6 @@ class _WebViewOneState extends State<WebViewOne> {
                         urlController.text = this.url;
                       });
                     },
-
                     onJsConfirm: (_, __) async {
                       Navigator.pop(context);
                       return JsConfirmResponse();
@@ -201,16 +178,3 @@ class _WebViewOneState extends State<WebViewOne> {
         ])));
   }
 }
-
-PayloadModel model = PayloadModel(
-    currency: 'NGN',
-    email: "hello@gmail.com",
-    transRef: DateTime.now().toIso8601String(),
-    description: "Sneakers",
-    fullName: "General Zod",
-    country: "NG",
-    amount: "10",
-    callbackUrl: "https://google.com",
-    publicKey: "SBTESTPUBK_Gq9XaRKyQ05LQ3XHR9NLNpxBgsmgGzg7",
-    pocketRef: "",
-    vendorId: "Freedah");
