@@ -14,7 +14,8 @@ class WebViewSwitcher extends StatefulWidget {
       required this.onCancel})
       : super(key: key);
   final PayloadModel payload;
-  final ValueSetter<Map> onSuccess, onCancel;
+  final ValueSetter<Map> onSuccess;
+  final ValueSetter<dynamic>onCancel;
   @override
   _WebViewSwitcherState createState() => _WebViewSwitcherState();
 }

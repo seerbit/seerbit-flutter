@@ -7,7 +7,7 @@ class SeerbitMethod {
   static startPayment(context,
       {required PayloadModel payload,
       required Function(Map) onSuccess,
-      required Function(Map) onCancel}) {
+      required Function(dynamic) onCancel}) {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,

@@ -30,7 +30,7 @@ String initRequest(
                                   country: "${model.country}",
                                   email:"${model.email}",
                                   amount: "${model.amount}",
-                                  close_prompt: true,
+                                  close_prompt: false,
                                   close_on_sucess: true,
                                   callbackurl: "${model.callbackUrl}",
                                   narrator:"seerbit-react-native",
@@ -47,7 +47,7 @@ String initRequest(
                                 },
                                 function close(close) {
                                    window.flutter_inappwebview
-                                    .callHandler('failure', JSON.stringify(response));
+                                    .callHandler('failure', JSON.stringify(close));
                                 }
                               );
                             }

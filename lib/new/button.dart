@@ -20,7 +20,8 @@ class SeerbitButton extends StatefulWidget {
   final PayloadModel payload;
 
   ///A function to determine what happens when the transaction is completed
-  final ValueSetter<Map> onSuccess, onCancel;
+  final ValueSetter<Map> onSuccess;
+  final ValueSetter<dynamic> onCancel;
 
   ///The styling for the Seerbit button defaults to
   ///```dart

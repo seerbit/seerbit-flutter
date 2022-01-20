@@ -12,7 +12,8 @@ class SeerbitPayment extends StatefulWidget {
       required this.onCancel})
       : super(key: key);
   final PayloadModel payload;
-  final ValueSetter<Map> onSuccess, onCancel;
+  final ValueSetter<Map> onSuccess;
+  final ValueSetter<dynamic> onCancel;
   @override
   _SeerbitPaymentState createState() => _SeerbitPaymentState();
 }

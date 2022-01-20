@@ -25,7 +25,13 @@ class SeerbitTest extends StatelessWidget {
                 onPressed: () => SeerbitMethod.startPayment(context,
                         payload: payload, onSuccess: (_) {
                       print(_);
-                    }, onCancel: (_) {}),
+                    }, onCancel: (_) {
+                      print('*' * 400);
+                      print('*' * 400);
+                      print(_);
+                      print('*' * 400);
+                      print('*' * 400);
+                    }),
                 child: Text(
                   "Checkout",
                   style: TextStyle(color: Colors.red),

@@ -19,7 +19,7 @@ class WebViewOne extends StatefulWidget {
       : super(key: key);
   final PayloadModel payload;
   final ValueSetter<Map> onSuccess;
-  final ValueSetter<Map> onCancel;
+  final ValueSetter<dynamic> onCancel;
 
   @override
   _WebViewOneState createState() => new _WebViewOneState();
@@ -86,7 +86,6 @@ class _WebViewOneState extends State<WebViewOne> {
                     onWebViewCreated: (controller) {
                       webViewController = controller;
                       webViewState.setControllerOne(controller);
-
                       controller.addJavaScriptHandler(
                           handlerName: 'success',
                           callback: (_) {
@@ -114,20 +113,9 @@ class _WebViewOneState extends State<WebViewOne> {
                       controller.addJavaScriptHandler(
                           handlerName: 'failure',
                           callback: (_) {
+                            widget.onCancel(jsonDecode(_[0]));
                             Navigator.pop(context);
-                            webViewState.setResponse(_);
-
-                            if (webViewState.reportLink == "about:blank") {
-                              webViewState.setUrl(_[0]
-                                  .toString()
-                                  .substring(1, _[0].length - 1));
-                              webViewState.switchView(false);
-                            } else {
-                              widget.onCancel(jsonDecode(_[0]));
-                              Future.delayed(Duration(seconds: 3),
-                                  () => Navigator.pop(context));
-                              // print(jsonDecode(_[0]));
-                            }
+                            // Navigator.pop(context);
                           });
                     },
                     onLoadStart: (controller, url) {
@@ -151,21 +139,24 @@ class _WebViewOneState extends State<WebViewOne> {
                         urlController.text = this.url;
                       });
                     },
-                    onJsConfirm: (_, __) async {
-                      Navigator.pop(context);
-                      return JsConfirmResponse();
-                    },
-                    onJsAlert: (_, __) async {
-                      Navigator.pop(context);
-                      return JsAlertResponse();
-                    },
-                    onJsPrompt: (_, __) async {
-                      Navigator.pop(context);
-                      return JsPromptResponse();
-                    },
-                    onCloseWindow: (_) {
-                      Navigator.pop(context);
-                    },
+                    // onJsConfirm: (_, __) async {
+                    //   // widget.onCancel({'cancel': true});
+                    //   Navigator.pop(context);
+                    //   return JsConfirmResponse();
+                    // },
+                    // onJsAlert: (_, __) async {
+                    //   // widget.onCancel({'cancel': true});
+                    //   Navigator.pop(context);
+                    //   return JsAlertResponse();
+                    // },
+                    // onJsPrompt: (_, __) async {
+                    //   // widget.onCancel({'cancel': true});
+                    //   Navigator.pop(context);
+                    //   return JsPromptResponse();
+                    // },
+                    // onCloseWindow: (_) {
+                    //   Navigator.pop(context);
+                    // },
                     onConsoleMessage: (controller, consoleMessage) {},
                   ),
                   progress < 1.0
