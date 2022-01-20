@@ -139,7 +139,7 @@ class _WebViewOneState extends State<WebViewOne> {
                                   .toString()
                                   .substring(1, _[0].length - 1));
                               webViewState.switchView(false);
-                            } else {
+                            } else {u
                               widget.onCancel(jsonDecode(_[0]));
                               Future.delayed(Duration(seconds: 3),
                                   () => Navigator.pop(context));
