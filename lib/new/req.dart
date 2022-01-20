@@ -29,7 +29,7 @@ String initRequest(
                                   country: "${model.country}",
                                   email:"${model.email}",
                                   amount: "${model.amount}",
-                                  close_prompt: false,
+                                  close_prompt: true,
                                   close_on_sucess: true,
                                   callbackurl: "${model.callbackUrl}",
                                   narrator:"seerbit-react-native",

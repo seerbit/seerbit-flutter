@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -19,7 +18,6 @@ class WebViewOne extends StatefulWidget {
       required this.onCancel})
       : super(key: key);
   final PayloadModel payload;
-
   final ValueSetter<Map> onSuccess;
   final ValueSetter<Map> onCancel;
 
@@ -53,19 +51,19 @@ class _WebViewOneState extends State<WebViewOne> {
   void initState() {
     super.initState();
 
-    pullToRefreshController = PullToRefreshController(
-      options: PullToRefreshOptions(
-        color: Colors.blue,
-      ),
-      onRefresh: () async {
-        if (Platform.isAndroid) {
-          webViewController?.reload();
-        } else if (Platform.isIOS) {
-          webViewController?.loadUrl(
-              urlRequest: URLRequest(url: await webViewController?.getUrl()));
-        }
-      },
-    );
+    // pullToRefreshController = PullToRefreshController(
+    //   options: PullToRefreshOptions(
+    //     color: Colors.blue,
+    //   ),
+    //   onRefresh: () async {
+    //     if (Platform.isAndroid) {
+    //       webViewController?.reload();
+    //     } else if (Platform.isIOS) {
+    //       webViewController?.loadUrl(
+    //           urlRequest: URLRequest(url: await webViewController?.getUrl()));
+    //     }
+    //   },
+    // );
   }
 
   @override
@@ -99,8 +97,8 @@ class _WebViewOneState extends State<WebViewOne> {
                     initialUrlRequest: URLRequest(
                         url: createUri(widget.payload, webViewState)),
                     initialOptions: options,
-                    pullToRefreshController: pullToRefreshController,
-
+                    // pullToRefreshController: pullToRefreshController,
+//
                     // initialData: InAppWebViewInitialData(data: ),
                     onWebViewCreated: (controller) {
                       webViewController = controller;
@@ -111,14 +109,8 @@ class _WebViewOneState extends State<WebViewOne> {
                           callback: (_) {
                             webViewState.setResponse(_);
                             if (webViewState.reportLink == "about:blank") {
-                              print(_[0]);
                               if (_[0].toString().contains('code')) {
                                 widget.onSuccess(jsonDecode(_[0]));
-                                // webViewController!.loadUrl(
-                                //     urlRequest: URLRequest(
-                                //         url: Uri.parse(_[0]
-                                //             .toString()
-                                //             .substring(1, _[0].length - 1))));
                               } else {
                                 webViewState.setUrl(_[0]
                                     .toString()
@@ -132,12 +124,14 @@ class _WebViewOneState extends State<WebViewOne> {
                               }
                             } else {
                               widget.onSuccess(jsonDecode(_[0]));
-                              // print(jsonDecode(_[0]));
+                              Future.delayed(Duration(seconds: 3),
+                                  () => Navigator.pop(context));
                             }
                           });
                       controller.addJavaScriptHandler(
                           handlerName: 'failure',
                           callback: (_) {
+                            Navigator.pop(context);
                             webViewState.setResponse(_);
 
                             if (webViewState.reportLink == "about:blank") {
@@ -147,7 +141,8 @@ class _WebViewOneState extends State<WebViewOne> {
                               webViewState.switchView(false);
                             } else {
                               widget.onCancel(jsonDecode(_[0]));
-                              Navigator.pop(context);
+                              Future.delayed(Duration(seconds: 3),
+                                  () => Navigator.pop(context));
                               // print(jsonDecode(_[0]));
                             }
                           });
@@ -164,9 +159,9 @@ class _WebViewOneState extends State<WebViewOne> {
                       webViewState.setProgress(false);
                     },
                     onProgressChanged: (controller, progress) {
-                      if (progress == 100) {
-                        pullToRefreshController.endRefreshing();
-                      }
+                      // if (progress == 100) {
+                      //   pullToRefreshController.endRefreshing();
+                      // }
                       setState(() {
                         this.progress = progress / 100;
                         urlController.text = this.url;
@@ -179,6 +174,21 @@ class _WebViewOneState extends State<WebViewOne> {
                       });
                     },
 
+                    onJsConfirm: (_, __) async {
+                      Navigator.pop(context);
+                      return JsConfirmResponse();
+                    },
+                    onJsAlert: (_, __) async {
+                      Navigator.pop(context);
+                      return JsAlertResponse();
+                    },
+                    onJsPrompt: (_, __) async {
+                      Navigator.pop(context);
+                      return JsPromptResponse();
+                    },
+                    onCloseWindow: (_) {
+                      Navigator.pop(context);
+                    },
                     onConsoleMessage: (controller, consoleMessage) {},
                   ),
                   progress < 1.0

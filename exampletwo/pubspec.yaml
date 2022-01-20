@@ -30,10 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   seerbit_flutter:
     path: "../"
-  flutter_inappwebview: ^5.3.2
-  url_launcher:
-  baserouter: ^0.0.2
-  provider:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
