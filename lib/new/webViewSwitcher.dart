@@ -40,7 +40,7 @@ class _WebViewSwitcherState extends State<WebViewSwitcher> {
               payload: widget.payload,
               onSuccess: widget.onSuccess,
               onCancel: widget.onCancel),
-          WebViewTwo(payload: widget.payload),
+          WebViewTwo(payload: widget.payload) ,
           Text(
             webViewState.currentUrl,
             style: TextStyle(fontSize: 12),

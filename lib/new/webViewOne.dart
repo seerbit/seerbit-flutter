@@ -106,8 +106,9 @@ class _WebViewOneState extends State<WebViewOne> {
                               }
                             } else {
                               widget.onSuccess(jsonDecode(_[0]));
-                              Future.delayed(Duration(seconds: 3),
-                                  () => Navigator.pop(context));
+                              if(widget.payload.closeOnSuccess??false){
+                                Navigator.pop(context);
+                              }
                             }
                           });
                       controller.addJavaScriptHandler(
