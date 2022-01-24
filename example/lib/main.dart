@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:seerbit_flutter/new/customization.dart';
 import 'package:seerbit_flutter/new/methods.dart';
 import 'package:seerbit_flutter/new/payload.dart';
-import 'package:seerbit_flutter/new/customization.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,12 +55,11 @@ PayloadModel payload = PayloadModel(
     closeOnSuccess: false,
     closePrompt: false,
     setAmountByCustomer: false,
-    // customization: CustomizationModel(
-    //       borderColor: "#000000",
-    //       backgroundColor: "#004C64",
-    //       buttonColor: "#0084A0",
-    //       paymentMethod: ["card"],
-    //       confetti: true,
-    //       // logo: "logo_url || base64",
-    // )
-    );
+    customization: CustomizationModel(
+      borderColor: "#000000",
+      backgroundColor: "#004C64",
+      buttonColor: "#0084A0",
+      paymentMethod: ["card"],
+      confetti: false,
+      logo: "logo_url || base64",
+    ));
