@@ -16,4 +16,5 @@
     * closeOnSuccess
     * closePrompt
     * setAmountByCustomer
-
+## [0.0.3+3] -24-01-2022
+* Add customization model.
