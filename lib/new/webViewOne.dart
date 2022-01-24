@@ -63,7 +63,7 @@ class _WebViewOneState extends State<WebViewOne> {
 
     return WillPopScope(
         onWillPop: () async {
-          webViewController!.goBack();
+          webViewController?.goBack();
           return false;
         },
         child: SafeArea(
@@ -106,8 +106,9 @@ class _WebViewOneState extends State<WebViewOne> {
                               }
                             } else {
                               widget.onSuccess(jsonDecode(_[0]));
-                              Future.delayed(Duration(seconds: 3),
-                                  () => Navigator.pop(context));
+                              if (widget.payload.closeOnSuccess ?? false) {
+                                Navigator.pop(context);
+                              }
                             }
                           });
                       controller.addJavaScriptHandler(
@@ -126,6 +127,7 @@ class _WebViewOneState extends State<WebViewOne> {
                     },
                     onLoadError: (controller, url, code, message) {
                       webViewState.setProgress(false);
+                      Navigator.pop(context);
                     },
                     onProgressChanged: (controller, progress) {
                       setState(() {
@@ -139,25 +141,6 @@ class _WebViewOneState extends State<WebViewOne> {
                         urlController.text = this.url;
                       });
                     },
-                    // onJsConfirm: (_, __) async {
-                    //   // widget.onCancel({'cancel': true});
-                    //   Navigator.pop(context);
-                    //   return JsConfirmResponse();
-                    // },
-                    // onJsAlert: (_, __) async {
-                    //   // widget.onCancel({'cancel': true});
-                    //   Navigator.pop(context);
-                    //   return JsAlertResponse();
-                    // },
-                    // onJsPrompt: (_, __) async {
-                    //   // widget.onCancel({'cancel': true});
-                    //   Navigator.pop(context);
-                    //   return JsPromptResponse();
-                    // },
-                    // onCloseWindow: (_) {
-                    //   Navigator.pop(context);
-                    // },
-                    onConsoleMessage: (controller, consoleMessage) {},
                   ),
                   progress < 1.0
                       ? LinearProgressIndicator(value: progress)

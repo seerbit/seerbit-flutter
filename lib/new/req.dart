@@ -30,16 +30,26 @@ String initRequest(
                                   country: "${model.country}",
                                   email:"${model.email}",
                                   amount: "${model.amount}",
-                                  close_prompt: false,
-                                  close_on_sucess: true,
+                                  full_name: "${model.fullName}",
+                                  close_prompt: ${model.closePrompt},
+                                  close_on_success: ${model.closeOnSuccess},
+                                  setAmountByCustomer: ${model.setAmountByCustomer},
                                   callbackurl: "${model.callbackUrl}",
                                   narrator:"seerbit-react-native",
                                   // integrationSource : "mobile-sdk",
                                   "report_link":"${state.reportLink}",
-                                  public_key: "${model.publicKey}"
-                                  //"SBPUBK_1ZAL1HXRQQFKHSHXAQ91KGGWEEUXZK4I"
-                                  // "SBTESTPUBK_Gq9XaRKyQ05LQ3XHR9NLNpxBgsmgGzg7"
-                                  // replace this with your own public key
+                                  public_key: "${model.publicKey}",
+                                   customization: {
+                                      theme: {
+                                        border_color: "${model.customization.borderColor}",
+                                        background_color: "${model.customization.backgroundColor}",
+                                        button_color: "${model.customization.buttonColor}",
+                                      },
+                                      payment_method: ["card", "account", "transfer", "wallet", 'ussd'],
+                                      confetti: ${model.customization.confetti}, // false;
+                                      logo: "logo_url || base64", 
+                                    }
+                                  ,
                                 },
                                 function callback(response) {
                                    window.flutter_inappwebview

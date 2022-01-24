@@ -3,7 +3,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class WebViewState extends ChangeNotifier {
   ///The Url currently on the webview
-  String currentUrl = "";
+  String currentUrl = "about:blank";
 
   ///controls if the first webview is being displayed
   bool isShowingFirst = true;

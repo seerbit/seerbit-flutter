@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:seerbit_flutter/new/customization.dart';
 import 'package:seerbit_flutter/new/methods.dart';
 import 'package:seerbit_flutter/new/payload.dart';
 
@@ -50,4 +51,15 @@ PayloadModel payload = PayloadModel(
     callbackUrl: "callbackUrl",
     publicKey: "SBTESTPUBK_Gq9XaRKyQ05LQ3XHR9NLNpxBgsmgGzg7",
     pocketRef: "",
-    vendorId: "Freedah");
+    vendorId: "Freedah",
+    closeOnSuccess: false,
+    closePrompt: false,
+    setAmountByCustomer: false,
+    customization: CustomizationModel(
+      borderColor: "#000000",
+      backgroundColor: "#004C64",
+      buttonColor: "#0084A0",
+      paymentMethod: ["card"],
+      confetti: false,
+      logo: "logo_url || base64",
+    ));
