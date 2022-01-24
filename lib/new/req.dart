@@ -39,17 +39,17 @@ String initRequest(
                                   // integrationSource : "mobile-sdk",
                                   "report_link":"${state.reportLink}",
                                   public_key: "${model.publicKey}",
-                                //   customization: {
-                                //     theme: {
-                                //       border_color: "${model.customization?.borderColor}",
-                                //       background_color: "${model.customization?.backgroundColor}",
-                                //       button_color: "${model.customization?.buttonColor}",
-                                //     },
-                                //     payment_method: "${model.customization?.paymentMethod}",
-                                //     confetti: ${model.customization?.confetti},
-                                //     logo: "${model.customization?.logo}"
-                                //   }
-                                // }
+                                   customization: {
+                                      theme: {
+                                        border_color: "${model.customization.borderColor}",
+                                        background_color: "${model.customization.backgroundColor}",
+                                        button_color: "${model.customization.buttonColor}",
+                                      },
+                                      payment_method: ["card", "account", "transfer", "wallet", 'ussd'],
+                                      confetti: ${model.customization.confetti}, // false;
+                                      logo: "logo_url || base64", 
+                                    }
+                                  ,
                                 },
                                 function callback(response) {
                                    window.flutter_inappwebview

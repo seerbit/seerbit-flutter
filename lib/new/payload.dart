@@ -1,7 +1,8 @@
 ///Model for the Payload  that takes in all the needed payment data
 import "customization.dart";
+
 class PayloadModel {
-  final CustomizationModel? customization;
+  final CustomizationModel customization;
   final String? currency,
       email,
       description,
@@ -15,28 +16,29 @@ class PayloadModel {
       pocketRef,
       vendorId;
   final String? reportLink;
+  
   final bool? closeOnSuccess;
   final bool? closePrompt;
   final bool? setAmountByCustomer;
-  PayloadModel({
-    required this.currency,
-    required this.transRef,
-     this.email,
-     this.description,
-     this.fullName,
-    required this.country,
-    required this.amount,
-     this.callbackUrl,
-    required this.publicKey,
-    this.narrator = 'seerbit-react-native',
-    this.reportLink = "",
-     this.pocketRef,
-     this.vendorId,
-     this.closeOnSuccess,
-     this.closePrompt,
-     this.setAmountByCustomer,
-     this.customization
-  });
+
+  PayloadModel(
+      {required this.currency,
+      required this.transRef,
+      this.email,
+      this.description,
+      this.fullName,
+      required this.country,
+      required this.amount,
+      this.callbackUrl,
+      required this.publicKey,
+      this.narrator = 'seerbit-react-native',
+      this.reportLink = "",
+      this.pocketRef,
+      this.vendorId,
+      this.closeOnSuccess,
+      this.closePrompt,
+      this.setAmountByCustomer,
+      this.customization = const CustomizationModel()});
 
   factory PayloadModel.fromJson(Map json) => PayloadModel(
       currency: json["Currency"],
@@ -54,6 +56,5 @@ class PayloadModel {
       setAmountByCustomer: json['SetAmountByCustomer'],
       closePrompt: json['ClosePrompt'],
       closeOnSuccess: json['CloseOnSuccess'],
-      customization: json['customization']
-      );
+      customization: json['customization']);
 }
