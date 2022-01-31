@@ -54,7 +54,16 @@ class CheckOut extends StatelessWidget {
                   closePrompt: false,
                   setAmountByCustomer: false,
                   pocketRef: "",
-                  vendorId: ""),
+                  vendorId: "",
+                  customization: CustomizationModel(
+                  borderColor: "#000000",
+                  backgroundColor: "#004C64",
+                  buttonColor: "#0084A0",
+                  paymentMethod: [PayChannel.card,PayChannel.account, PayChannel.transfer],
+                  confetti: false,
+                  logo: "logo_url || base64",
+    )
+                  ),
               onSuccess: (response) {},
               onCancel: (_) {}),
             ),

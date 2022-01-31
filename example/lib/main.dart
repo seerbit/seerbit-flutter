@@ -18,25 +18,28 @@ class SeerbitTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.white,
-        height: 1000,
-        width: 500,
-        child: Center(
-            child: TextButton(
-                onPressed: () => SeerbitMethod.startPayment(context,
-                        payload: payload, onSuccess: (_) {
-                      print(_);
-                    }, onCancel: (_) {
-                      print('*' * 400);
-                      print('*' * 400);
-                      print(_);
-                      print('*' * 400);
-                      print('*' * 400);
-                    }),
-                child: Text(
-                  "Checkout",
-                  style: TextStyle(color: Colors.red),
-                ))));
+      color: Colors.white,
+      height: 1000,
+      width: 500,
+      child: Center(
+        child: TextButton(
+          onPressed: () => SeerbitMethod.startPayment(context, payload: payload,
+              onSuccess: (_) {
+            print(_);
+          }, onCancel: (_) {
+            print('*' * 400);
+            print('*' * 400);
+            print(_);
+            print('*' * 400);
+            print('*' * 400);
+          }),
+          child: Text(
+            "Checkout",
+            style: TextStyle(color: Colors.red),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -59,7 +62,7 @@ PayloadModel payload = PayloadModel(
       borderColor: "#000000",
       backgroundColor: "#004C64",
       buttonColor: "#0084A0",
-      paymentMethod: ["card"],
+      paymentMethod: [PayChannel.account, PayChannel.transfer],
       confetti: false,
       logo: "logo_url || base64",
     ));

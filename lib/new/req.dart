@@ -1,12 +1,24 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:seerbit_flutter/new/customization.dart';
 import 'package:seerbit_flutter/new/payload.dart';
 import 'package:seerbit_flutter/new/state.dart';
+
+String paymentMethods = "card";
 
 ///Creates an HTML string with information from that parsed Payload model
 String initRequest(
     PayloadModel model, String reportLink, String x, WebViewState state) {
+  List<String> paymentMethods = List.generate(
+      model.customization.paymentMethod.length,
+      (index) => getPayChannel(model.customization.paymentMethod[index]));
+
+  if (paymentMethods.length < 5) {
+    paymentMethods
+        .addAll(List.generate(5 - paymentMethods.length, (index) => ""));
+  }
+
   return """
                                   <!DOCTYPE html>
                     <html lang="en">
@@ -45,7 +57,11 @@ String initRequest(
                                         background_color: "${model.customization.backgroundColor}",
                                         button_color: "${model.customization.buttonColor}",
                                       },
-                                      payment_method: ["card", "account", "transfer", "wallet", 'ussd'],
+                                      payment_method: 
+                                      """ +
+      """
+                                      ["${paymentMethods[0]}","${paymentMethods[1]}","${paymentMethods[2]}","${paymentMethods[3]}","${paymentMethods[4]}"],""" +
+      """
                                       confetti: ${model.customization.confetti}, // false;
                                       logo: "logo_url || base64", 
                                     }
