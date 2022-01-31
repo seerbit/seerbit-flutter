@@ -19,6 +19,6 @@
 ## [0.0.3+3] -24-01-2022
 * Add customization model.
 
-## [0.0.3] -31-01-2022
+## [0.0.4] -31-01-2022
 * Add Payment Options parser
     Developer can select from an array of PayChannels such as [ussd,account,wallet,transfer,card]
