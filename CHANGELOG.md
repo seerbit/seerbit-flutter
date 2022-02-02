@@ -22,3 +22,6 @@
 ## [0.0.4] -31-01-2022
 * Add Payment Options parser
     Developer can select from an array of PayChannels such as [ussd,account,wallet,transfer,card]
+
+## [0.0.4+1] -31-01-2022
+* Fix logo parsing.

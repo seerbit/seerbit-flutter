@@ -63,7 +63,7 @@ String initRequest(
                                       ["${paymentMethods[0]}","${paymentMethods[1]}","${paymentMethods[2]}","${paymentMethods[3]}","${paymentMethods[4]}"],""" +
       """
                                       confetti: ${model.customization.confetti}, // false;
-                                      logo: "logo_url || base64", 
+                                      logo: "${model.customization.logo}",
                                     }
                                   ,
                                 },
