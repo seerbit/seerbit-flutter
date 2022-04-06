@@ -80,16 +80,22 @@ class _WebViewTwoState extends State<WebViewTwo> {
                     onUpdateVisitedHistory:
                         (controller, url, androidIsReload) async {
                       webViewState.setReportLink(url.toString());
+                      print('object' * 24);
                       if (shouldSwitchView(url.toString(), widget.payload)) {
+                        print('View X 4' * 24);
                         webViewState.setReportLink(url.toString());
+                        print(url.toString());
+
                         webViewState.controllerOne!.loadUrl(
                             urlRequest: URLRequest(
                                 url: createUri(widget.payload, webViewState)));
-                        // webViewState.setReportLink('');
 
                         ///FIXME:
 
                         webViewState.switchView(true);
+                      } else {
+                        print('View X 1' * 24);
+                        webViewState.setReportLink("about:blank");
                       }
                       setState(() {
                         this.url = url.toString();
@@ -105,7 +111,6 @@ class _WebViewTwoState extends State<WebViewTwo> {
                       ? Center(
                           child: CircularProgressIndicator(value: progress))
                       : Container(),
-                  // Center(child: Text(webViewState.reportLink.toString()))
                 ],
               ),
             ),

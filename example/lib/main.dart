@@ -45,12 +45,12 @@ class SeerbitTest extends StatelessWidget {
 
 PayloadModel payload = PayloadModel(
     currency: 'NGN',
-    email: "hello@gmail.com",
+    email: "hellxo@gmxail.com",
     description: "Sneakers",
-    fullName: "General Zod",
+    fullName: "General ZxXXod",
     country: "NG",
-    amount: "100",
-    transRef: Random().nextInt(5000200).toString(),
+    amount: "102",
+    transRef: Random().nextInt(2000).toString(),
     callbackUrl: "callbackUrl",
     publicKey: "SBTESTPUBK_Gq9XaRKyQ05LQ3XHR9NLNpxBgsmgGzg7",
     pocketRef: "",
@@ -62,7 +62,7 @@ PayloadModel payload = PayloadModel(
       borderColor: "#000000",
       backgroundColor: "#004C64",
       buttonColor: "#0084A0",
-      paymentMethod: [PayChannel.account, PayChannel.transfer],
+      paymentMethod: [PayChannel.account, PayChannel.transfer, PayChannel.card],
       confetti: false,
       logo: "logo_url || base64",
     ));

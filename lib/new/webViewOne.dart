@@ -90,10 +90,18 @@ class _WebViewOneState extends State<WebViewOne> {
                           handlerName: 'success',
                           callback: (_) {
                             webViewState.setResponse(_);
+                            print('Success 0');
+                            // print('*' * 400);
+                            // print(webViewState.reportLink);
+                            // print(_.toString());
+                            // print('*' * 400);
                             if (webViewState.reportLink == "about:blank") {
+                              print('Success 1');
                               if (_[0].toString().contains('code')) {
+                                print('Success 2');
                                 widget.onSuccess(jsonDecode(_[0]));
                               } else {
+                                print('Success 3');
                                 webViewState.setUrl(_[0]
                                     .toString()
                                     .substring(1, _[0].length - 1));
@@ -105,6 +113,7 @@ class _WebViewOneState extends State<WebViewOne> {
                                             webViewState.currentUrl)));
                               }
                             } else {
+                              print('Success 4');
                               widget.onSuccess(jsonDecode(_[0]));
                               if (widget.payload.closeOnSuccess ?? false) {
                                 Navigator.pop(context);
@@ -114,6 +123,7 @@ class _WebViewOneState extends State<WebViewOne> {
                       controller.addJavaScriptHandler(
                           handlerName: 'failure',
                           callback: (_) {
+                            print('Failure 0');
                             widget.onCancel(jsonDecode(_[0]));
                             Navigator.pop(context);
                             // Navigator.pop(context);
@@ -136,10 +146,13 @@ class _WebViewOneState extends State<WebViewOne> {
                       });
                     },
                     onUpdateVisitedHistory: (controller, url, androidIsReload) {
+                      print('Update History' * 24);
+                      print(url);
                       setState(() {
                         this.url = url.toString();
                         urlController.text = this.url;
                       });
+                      webViewState.setReportLink('about:blank');
                     },
                   ),
                   progress < 1.0
