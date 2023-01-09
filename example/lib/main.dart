@@ -13,7 +13,7 @@ Future main() async {
 }
 
 class SeerbitTest extends StatelessWidget {
-  const SeerbitTest({Key? key}) : super(key: key);
+  SeerbitTest({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +23,7 @@ class SeerbitTest extends StatelessWidget {
       width: 500,
       child: Center(
         child: TextButton(
-          onPressed: () => SeerbitMethod.startPayment(context, payload: payload,
-              onSuccess: (_) {
-            print(_);
-          }, onCancel: (_) {
-            print('*' * 400);
-            print('*' * 400);
-            print(_);
-            print('*' * 400);
-            print('*' * 400);
-          }),
+          onPressed: () => paymentStart(context),
           child: Text(
             "Checkout",
             style: TextStyle(color: Colors.red),
@@ -41,9 +32,11 @@ class SeerbitTest extends StatelessWidget {
       ),
     );
   }
-}
 
-PayloadModel payload = PayloadModel(
+
+  paymentStart(context){
+  SeerbitMethod SeerBit = new SeerbitMethod();
+  PayloadModel payload = PayloadModel(
     currency: 'NGN',
     email: "hellxo@gmxail.com",
     description: "Sneakers",
@@ -66,3 +59,17 @@ PayloadModel payload = PayloadModel(
       confetti: false,
       logo: "logo_url || base64",
     ));
+    SeerBit.startPayment(context, payload: payload,
+     onSuccess: (_) {
+            print(_);
+          }, onCancel: (_) {
+            print('*' * 400);
+            print('*' * 400);
+            print(_);
+            print('*' * 400);
+            print('*' * 400);
+          });
+  }
+}
+
+
