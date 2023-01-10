@@ -14,6 +14,7 @@ Future main() async {
 
 class SeerbitTest extends StatelessWidget {
   SeerbitTest({Key? key}) : super(key: key);
+  SeerbitMethod SeerBit = new SeerbitMethod();  
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,6 @@ class SeerbitTest extends StatelessWidget {
 
 
   paymentStart(context){
-  SeerbitMethod SeerBit = new SeerbitMethod();
   PayloadModel payload = PayloadModel(
     currency: 'NGN',
     email: "hellxo@gmxail.com",
@@ -44,10 +44,9 @@ class SeerbitTest extends StatelessWidget {
     country: "NG",
     amount: "102",
     transRef: Random().nextInt(2000).toString(),
-    callbackUrl: "callbackUrl",
-    publicKey: "SBTESTPUBK_Gq9XaRKyQ05LQ3XHR9NLNpxBgsmgGzg7",
+    publicKey: "merchant_public_key",
     pocketRef: "",
-    vendorId: "Freedah",
+    vendorId: "vendorId",
     closeOnSuccess: false,
     closePrompt: false,
     setAmountByCustomer: false,
@@ -63,10 +62,6 @@ class SeerbitTest extends StatelessWidget {
      onSuccess: (_) {
             print(_);
           }, onCancel: (_) {
-            print('*' * 400);
-            print('*' * 400);
-            print(_);
-            print('*' * 400);
             print('*' * 400);
           });
   }
