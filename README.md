@@ -71,7 +71,7 @@ You should already have your API keys. If not, go to [dashboard.seerbitapi.com](
 |                        |           |          |                      | backgroundColor: "#004C64", buttonColor: "#0084A0",       |
 |                        |           |          |                      | paymentMethod:                                            |
 |                        |           |          |                      | [PayChannel.card,PayChannel.account, PayChannel.transfer] |
-|                        |           |          |                      | confetti: false ,                                         |
+|                        |           |          |                      | confetti: false,                                         |
 |                        |           |          |                      | logo: "logo_url  | base64",)                              |    
 | onSuccess              | `Function`| Optional | None                 | Callback function if transaction was successful           |
 | onCancel               | `Function`| Optional | None                 | Callback function if transaction was cancelled            |
