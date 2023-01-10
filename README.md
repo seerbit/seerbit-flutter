@@ -72,9 +72,10 @@ class CheckOut extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () => SeerbitMethod.startPayment(
+      onPressed: () =>
+          SeerbitMethod.startPayment(
               context,
-              PayloadModel(
+              payload: PayloadModel(
                   currency: 'NGN',
                   email: "dummyemail@mail.com",
                   description: "A pair of new shoes",
@@ -89,25 +90,25 @@ class CheckOut extends StatelessWidget {
                   setAmountByCustomer: false,
                   pocketRef: "",
                   vendorId: "",
-                  customization: CustomizationModel(
-                  borderColor: "#000000",
-                  backgroundColor: "#004C64",
-                  buttonColor: "#0084A0",
-                  paymentMethod: [PayChannel.card,PayChannel.account, PayChannel.transfer],
-                  confetti: false,
-                  logo: "logo_url || base64",
-    )
-                  ),
+                  customization: const CustomizationModel(
+                    borderColor: "#000000",
+                    backgroundColor: "#004C64",
+                    buttonColor: "#0084A0",
+                    paymentMethod: [PayChannel.card, PayChannel.account, PayChannel.transfer],
+                    confetti: false,
+                    logo: "logo_url || base64",
+                  )
+              ),
               onSuccess: (response) {},
               onCancel: (_) {}),
-            ),
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.red),
-        ),
-        child: Text(
-          'Checkout',
-          style: TextStyle(color: Colors.white),
-        ));
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Colors.red),
+      ),
+      child: const Text(
+        'Checkout',
+        style: TextStyle(color: Colors.white),
+      ),
+    );
   }
 }
 
@@ -128,5 +129,8 @@ This ends the payment and removes the checkout view from the screen.
 <span>
 <a href="https://github.com/onuohasilver">
   <img src="https://github.com/onuohasilver.png?size=50">
+</a>
+<a href="https://github.com/adminixtrator">
+  <img src="https://github.com/adminixtrator.png?size=50">
 </a>
 </span>
