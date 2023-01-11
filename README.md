@@ -65,23 +65,23 @@ class CheckOut extends StatelessWidget {
 const CheckOut({Key? key}) : super(key: key);
 SeerbitMethod SeerBit = new SeerbitMethod();
 
-@override
-Widget build(BuildContext context) {
-return Container(
-color: Colors.white,
-height: 1000,
-width: 500,
-child: Center(
-child: TextButton(
-onPressed: () => paymentStart(context),
-child: Text(
-"Checkout",
-style: TextStyle(color: Colors.red),
-),
-),
-),
-);
-}
+ @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      height: 1000,
+      width: 500,
+      child: Center(
+        child: TextButton(
+          onPressed: () => paymentStart(context),
+          child: Text(
+            "Checkout",
+            style: TextStyle(color: Colors.red),
+          ),
+        ),
+      ),
+    );
+  }
 
 paymentStart(context){
 PayloadModel payload = PayloadModel(
