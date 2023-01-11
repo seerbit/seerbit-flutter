@@ -72,7 +72,7 @@ You should already have your API keys. If not, go to [dashboard.seerbitapi.com](
 |                                                                                | [PayChannel.card,PayChannel.account,                      |
 |                                                                                | PayChannel.transfer, PayChannel.momo]                     |
 |                                                                                | confetti: false ,                                         |
-|                                                                                | logo: "logo_url   base64",)                               |
+|                                                                                | logo: "logo_url | base64",)                               |
 | onSuccess              | `Method`          | Optional | None                   | Callback method if transaction was successful             |
 | onCancel               | `Method`          | Optional | None                   | Callback method if transaction was cancelled              |
  
