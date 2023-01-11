@@ -1,18 +1,17 @@
 ##
+
 The index of smooth input pin code was worked on to resolve props violation error
 import {
- 
-  // ViewPropTypes,
+
+// ViewPropTypes,
 } from 'react-native' was commeneted out and replaced by
 import {ViewPropTypes} from 'deprecated-react-native-prop-types';
 
 these lines was also commeneted out in the smooth input node module
-  // textStyle: Text.propTypes.style,
-  // textStyleFocused: Text.propTypes.style,
+// textStyle: Text.propTypes.style,
+// textStyleFocused: Text.propTypes.style,
+
 ##
-
-
-
 
 <p align="center">
 <img width="400" valign="top" src="https://assets.seerbitapi.com/images/seerbit_logo_type.png" data-canonical-src="https://res.cloudinary.com/dpejkbof5/image/upload/v1620323718/Seerbit_logo_png_ddcor4.png" style="max-width:100%; ">
@@ -51,30 +50,31 @@ You should already have your API keys. If not, go to [dashboard.seerbitapi.com](
  
 ## Properties
  
-| Property               | Type      | Required | Default              | Desc                                                      |
-| ---------------------- | ----------| -------- | -------------------- | --------------------------------------------------------- |
-| currency               | `String`  | Optional | NGN                  | The currency for the transaction e.g NGN                  |
-| email                  | `String`  | Required | None                 | The email of the user to be charged                       |
-| description            | `String`  | Optional | None                 | The transaction description which is optional             |
-| fullName               | `String`  | Optional | None                 | The fullname of the user to be charged                    |
-| country                | `String`  | Optional | None                 | Transaction country which can be optional                 |
-| transRef               | `String`  | Required | None                 | Set a unique transaction reference for every transaction  |
-| amount                 | `String`  | Required | None                 | The transaction amount in kobo                            |
-| callbackUrl            | `String`  | Optional | None                 | This is the redirect url when transaction is successful   |
-| publicKey              | `String`  | Required | None                 | Your Public key or see above step to get yours            |
-| closeOnSuccess         | `Boolean` | Optional | False                | Close checkout when trasaction is successful              |
-| closePrompt            | `Boolean` | Optional | False                | Close the checkout page if transaction is not initiated   |
-| setAmountByCustomer    | `Boolean` | Optional | False                | Set to true if you want user to enter transaction amount  |
-| pocketRef              | `String`  | Optional | None                 | This is your pocket reference for vendors with pocket     |
-| vendorId               | `String`  | Optional | None                 | This is the vendorId of your business using pocket        |
-| customization          | `Method`  | Optional | CustomizationModel() | CustomizationMode( borderColor: "#000000",                |
-|                        |           |          |                      | backgroundColor: "#004C64", buttonColor: "#0084A0",       |
-|                        |           |          |                      | paymentMethod:                                            |
-|                        |           |          |                      | [PayChannel.card,PayChannel.account, PayChannel.transfer] |
-|                        |           |          |                      | confetti: false ,                                         |
-|                        |           |          |                      | logo: "logo_url  | base64",)                              |    
-| onSuccess              | `Function`| Optional | None                 | Callback function if transaction was successful           |
-| onCancel               | `Function`| Optional | None                 | Callback function if transaction was cancelled            |
+| Property               | Type                | Required | Default              | Desc                                                      |
+| ---------------------- | ------------------- | -------- | -------------------- | --------------------------------------------------------- |
+| currency               | `String`            | Optional | NGN                  | The currency for the transaction e.g NGN                  |
+| email                  | `String`            | Required | None                 | The email of the user to be charged                       |
+| description            | `String`            | Optional | None                 | The transaction description which is optional             |
+| fullName               | `String`            | Optional | None                 | The fullname of the user to be charged                    |
+| country                | `String`            | Optional | None                 | Transaction country which can be optional                 |
+| transRef               | `String`            | Required | None                 | Set a unique transaction reference for every transaction  |
+| amount                 | `String`            | Required | None                 | The transaction amount in kobo                            |
+| callbackUrl            | `String`            | Optional | None                 | This is the redirect url when transaction is successful   |
+| publicKey              | `String`            | Required | None                 | Your Public key or see above step to get yours            |
+| closeOnSuccess         | `bool`              | Optional | False                | Close checkout when trasaction is successful              |
+| closePrompt            | `bool`              | Optional | False                | Close the checkout page if transaction is not initiated   |
+| setAmountByCustomer    | `bool`              | Optional | False                | Set to true if you want user to enter transaction amount  |
+| pocketRef              | `String`            | Optional | None                 | This is your pocket reference for vendors with pocket     |
+| vendorId               | `String`            | Optional | None                 | This is the vendorId of your business using pocket        |
+| customization          | CustomizationModel  | Optional | CustomizationModel   | CustomizationMode( borderColor: "#000000",                |
+|                                                                                | backgroundColor: "#004C64", buttonColor: "#0084A0",       |
+|                                                                                | paymentMethod:                                            |
+|                                                                                | [PayChannel.card,PayChannel.account,                      |
+|                                                                                | PayChannel.transfer, PayChannel.momo]                     |
+|                                                                                | confetti: false ,                                         |
+|                                                                                | logo: "logo_url   base64",)                               |
+| onSuccess              | `Method`          | Optional | None                   | Callback method if transaction was successful             |
+| onCancel               | `Method`          | Optional | None                   | Callback method if transaction was cancelled              |
  
 ## Usage
  
@@ -146,10 +146,3 @@ This ends the payment and removes the checkout view from the screen.
  <img src="https://github.com/onuohasilver.png?size=50">
 </a>
 </span>
- 
-
-
-
-
-
-
