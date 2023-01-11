@@ -143,6 +143,6 @@ This ends the payment and removes the checkout view from the screen.
 
 <span>
 <a href="https://github.com/falola0021">
- <img src="https://avatars.githubusercontent.com/u/47002383?s=400&u=f8aec76f9e2064d316d2a79aa1b70860539e9c99&v=4">
+ <img src="https://github.com/falola0021.png?size=50">
 </a>
 </span>
