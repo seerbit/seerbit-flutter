@@ -133,13 +133,6 @@ During the payment process you can simply end the process by calling
  
 This ends the payment and removes the checkout view from the screen.
  
-## Contributors
- 
-<span>
-<a href="https://github.com/onuohasilver">
- <img src="https://github.com/onuohasilver.png?size=50">
-</a>
-</span>
  
 
 
