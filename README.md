@@ -1,18 +1,3 @@
-##
-
-The index of smooth input pin code was worked on to resolve props violation error
-import {
-
-// ViewPropTypes,
-} from 'react-native' was commeneted out and replaced by
-import {ViewPropTypes} from 'deprecated-react-native-prop-types';
-
-these lines was also commeneted out in the smooth input node module
-// textStyle: Text.propTypes.style,
-// textStyleFocused: Text.propTypes.style,
-
-##
-
 <p align="center">
 <img width="400" valign="top" src="https://assets.seerbitapi.com/images/seerbit_logo_type.png" data-canonical-src="https://res.cloudinary.com/dpejkbof5/image/upload/v1620323718/Seerbit_logo_png_ddcor4.png" style="max-width:100%; ">
 </p>
@@ -75,74 +60,69 @@ You should already have your API keys. If not, go to [dashboard.seerbitapi.com](
 ```dart
 import 'package:flutter/material.dart';
 import 'package:seerbit_flutter/seerbit_flutter.dart';
- 
-class CheckOut extends StatelessWidget {
- const CheckOut({Key? key}) : super(key: key);
- 
- @override
- Widget build(BuildContext context) {
-   return TextButton(
-       onPressed: () => SeerbitMethod.startPayment(
-             context,
-             PayloadModel(
-                 currency: 'NGN',
-                 email: "dummyemail@mail.com",
-                 description: "A pair of new shoes",
-                 fullName: "Jane Doe",
-                 country: "NG",
-                 transRef: DateTime.now().toString(),
-                 amount: "100",
-                 callbackUrl: "your callback url",
-                 publicKey: "YOUR PUBLIC KEY",
-                 closeOnSuccess: false,
-                 closePrompt: false,
-                 setAmountByCustomer: false,
-                 pocketRef: "",
-                 vendorId: "",
-                 customization: CustomizationModel(
-                 borderColor: "#000000",
-                 backgroundColor: "#004C64",
-                 buttonColor: "#0084A0",
-                 paymentMethod: [PayChannel.card,PayChannel.account, PayChannel.transfer],
-                 confetti: false,
-                 logo: "logo_url || base64",
-   )
-                 ),
-             onSuccess: (response) {},
-             onCancel: (_) {}),
-           ),
-       style: ButtonStyle(
-         backgroundColor: MaterialStateProperty.all(Colors.red),
-       ),
-       child: Text(
-         'Checkout',
-         style: TextStyle(color: Colors.white),
-       ));
- }
-}
- 
-```
- 
-`OnSuccess` you will recieve a Map containing the response from the payment request.
- 
-During the payment process you can simply end the process by calling
- 
-```dart
-   SeerbitMethod.endPayment(context);
-```
- 
-This ends the payment and removes the checkout view from the screen.
- 
-## Contributors
- 
-<span>
-<a href="https://github.com/onuohasilver">
- <img src="https://github.com/onuohasilver.png?size=50">
-</a>
-</span>
 
-<span>
-<a href="https://github.com/falola0021">
- <img src="https://github.com/falola0021.png?size=50">
-</a>
-</span>
+class CheckOut extends StatelessWidget {
+const CheckOut({Key? key}) : super(key: key);
+SeerbitMethod SeerBit = new SeerbitMethod();
+
+@override
+Widget build(BuildContext context) {
+return Container(
+color: Colors.white,
+height: 1000,
+width: 500,
+child: Center(
+child: TextButton(
+onPressed: () => paymentStart(context),
+child: Text(
+"Checkout",
+style: TextStyle(color: Colors.red),
+),
+),
+),
+);
+}
+
+paymentStart(context){
+PayloadModel payload = PayloadModel(
+currency: 'NGN',
+email: "hellxo@gmxail.com",
+description: "Sneakers",
+fullName: "General ZxXXod",
+country: "NG",
+amount: "102",
+transRef: Random().nextInt(2000).toString(),
+publicKey: "merchant*public_key",
+pocketRef: "",
+vendorId: "vendorId",
+closeOnSuccess: false,
+closePrompt: false,
+setAmountByCustomer: false,
+customization: CustomizationModel(
+borderColor: "#000000",
+backgroundColor: "#004C64",
+buttonColor: "#0084A0",
+paymentMethod: [PayChannel.account, PayChannel.transfer, PayChannel.card, PayChannel.momo],
+confetti: false,
+logo: "logo_url || base64",
+));
+SeerBit.startPayment(context, payload: payload,
+onSuccess: (*) {
+print(_);
+}, onCancel: (_) {
+print('_' _ 400);
+});
+}
+}
+
+````
+
+`OnSuccess` you will recieve a Map containing the response from the payment request.
+
+During the payment process you can simply end the process by calling
+
+```dart
+SeerbitMethod.endPayment(context);
+````
+
+This ends the payment and removes the checkout view from the screen.

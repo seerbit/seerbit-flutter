@@ -54,7 +54,7 @@ class SeerbitTest extends StatelessWidget {
       borderColor: "#000000",
       backgroundColor: "#004C64",
       buttonColor: "#0084A0",
-      paymentMethod: [PayChannel.account, PayChannel.transfer, PayChannel.card],
+      paymentMethod: [PayChannel.account, PayChannel.transfer, PayChannel.card, PayChannel.momo],
       confetti: false,
       logo: "logo_url || base64",
     ));

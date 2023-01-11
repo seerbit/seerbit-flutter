@@ -14,11 +14,11 @@ class CustomizationModel {
         PayChannel.card,
         PayChannel.transfer,
         PayChannel.ussd,
-        PayChannel.wallet
+        PayChannel.momo
       ]});
 }
 
-enum PayChannel { card, account, transfer, wallet, ussd }
+enum PayChannel { card, account, transfer, momo, ussd }
 
 String getPayChannel(PayChannel channel) {
   switch (channel) {
@@ -28,8 +28,8 @@ String getPayChannel(PayChannel channel) {
       return "card";
     case PayChannel.transfer:
       return "transfer";
-    case PayChannel.wallet:
-      return "walllet";
+    case PayChannel.momo:
+      return "wallet";
     case PayChannel.ussd:
       return "ussd";
     default:
