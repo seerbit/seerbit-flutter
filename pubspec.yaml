@@ -1,10 +1,10 @@
 name: seerbit_flutter
 description: Seerbit Flutter SDK can be used to integrate the SeerBit payment gateway into your flutter application..
-version: 0.0.4+1
+version: 0.0.4+3
 homepage: https://github.com/seerbit/seerbit-flutter.git
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.12.0 <3.3.10'
   flutter: ">=1.17.0"
 
 dependencies:

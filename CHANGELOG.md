@@ -25,3 +25,6 @@
 
 ## [0.0.4+1] -31-01-2022
 * Fix logo parsing.
+
+## [0.0.4+3] -11-01-2023
+* Fix payment method data caching that causes duplicate reference.
