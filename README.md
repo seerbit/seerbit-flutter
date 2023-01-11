@@ -84,40 +84,43 @@ SeerbitMethod SeerBit = new SeerbitMethod();
   }
 
 paymentStart(context){
-PayloadModel payload = PayloadModel(
-currency: 'NGN',
-email: "hellxo@gmxail.com",
-description: "Sneakers",
-fullName: "General ZxXXod",
-country: "NG",
-amount: "102",
-transRef: Random().nextInt(2000).toString(),
-publicKey: "merchant*public_key",
-pocketRef: "",
-vendorId: "vendorId",
-closeOnSuccess: false,
-closePrompt: false,
-setAmountByCustomer: false,
-customization: CustomizationModel(
-borderColor: "#000000",
-backgroundColor: "#004C64",
-buttonColor: "#0084A0",
-paymentMethod: [PayChannel.account, PayChannel.transfer, PayChannel.card, PayChannel.momo],
-confetti: false,
-logo: "logo_url || base64",
-));
-SeerBit.startPayment(context, payload: payload,
-onSuccess: (*) {
-print(_);
-}, onCancel: (_) {
-print('_' _ 400);
-});
+ PayloadModel payload = PayloadModel(
+  currency: 'NGN',
+  email: "hellxo@gmxail.com",
+  description: "Sneakers",
+  fullName: "General ZxXXod",
+  country: "NG",
+  amount: "102",
+  transRef: Random().nextInt(2000).toString(),
+  publicKey: "merchant*public_key",
+  pocketRef: "",
+  vendorId: "vendorId",
+  closeOnSuccess: false,
+  closePrompt: false,
+  setAmountByCustomer: false,
+  customization: CustomizationModel(
+    borderColor: "#000000",
+    backgroundColor: "#004C64",
+    buttonColor: "#0084A0",
+    paymentMethod: [PayChannel.account, PayChannel.transfer, PayChannel.card, PayChannel.momo],
+    confetti: false,
+    logo: "logo_url || base64",
+  )
+);
+
+SeerBit.startPayment(
+  context, 
+  payload: payload,
+  onSuccess: (*) { print(*);}, 
+  onCancel: (_) { print('_' _ 400);}
+);
+
 }
 }
 
 ````
 
-`OnSuccess` you will recieve a Map containing the response from the payment request.
+`onSuccess` you will recieve a Map containing the response from the payment request.
 
 During the payment process you can simply end the process by calling
 
