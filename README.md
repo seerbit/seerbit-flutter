@@ -108,7 +108,7 @@ class CheckOut extends StatelessWidget {
       borderColor: "#000000",
       backgroundColor: "#004C64",
       buttonColor: "#0084A0",
-      paymentMethod: [PayChannel.account, PayChannel.transfer, PayChannel.card],
+      paymentMethod: [PayChannel.account, PayChannel.transfer, PayChannel.card, PayChannel.momo],
       confetti: false,
       logo: "logo_url || base64",
     ));
@@ -128,15 +128,7 @@ class CheckOut extends StatelessWidget {
 During the payment process you can simply end the process by calling
  
 ```dart
-   SeerbitMethod.endPayment(context);
+SeerbitMethod.endPayment(context);
 ```
  
 This ends the payment and removes the checkout view from the screen.
- 
- 
-
-
-
-
-
-
