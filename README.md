@@ -1,19 +1,3 @@
-##
-The index of smooth input pin code was worked on to resolve props violation error
-import {
- 
-  // ViewPropTypes,
-} from 'react-native' was commeneted out and replaced by
-import {ViewPropTypes} from 'deprecated-react-native-prop-types';
-
-these lines was also commeneted out in the smooth input node module
-  // textStyle: Text.propTypes.style,
-  // textStyleFocused: Text.propTypes.style,
-##
-
-
-
-
 <p align="center">
 <img width="400" valign="top" src="https://assets.seerbitapi.com/images/seerbit_logo_type.png" data-canonical-src="https://res.cloudinary.com/dpejkbof5/image/upload/v1620323718/Seerbit_logo_png_ddcor4.png" style="max-width:100%; ">
 </p>
