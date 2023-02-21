@@ -43,7 +43,7 @@ class SeerbitTest extends StatelessWidget {
         country: "NG",
         amount: "102",
         transRef: Random().nextInt(2000).toString(),
-        publicKey: "SBPUBK_1ZAL1HXRQQFKHSHXAQ91KGGWEEUXZK4I",
+        publicKey: "merchant_public_key",
         pocketRef: "",
         vendorId: "vendorId",
         closeOnSuccess: false,

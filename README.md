@@ -51,6 +51,7 @@ You should already have your API keys. If not, go to [dashboard.seerbitapi.com](
 | setAmountByCustomer    | `bool`              | Optional | False                | Set to true if you want user to enter transaction amount  |
 | pocketRef              | `String`            | Optional | None                 | This is your pocket reference for vendors with pocket     |
 | vendorId               | `String`            | Optional | None                 | This is the vendorId of your business using pocket        |
+| tokenize               | `bool`              | Optional | False                | Tokenize card                                             |
 | customization          | CustomizationModel  | Optional | CustomizationModel   | CustomizationMode( borderColor: "#000000", backgroundColor: "#004C64", buttonColor: "#0084A0", paymentMethod:[PayChannel.card, PayChannel.account, PayChannel.transfer, PayChannel.momo], confetti: false , logo: "logo_url or base64")                                                                                                 |
 | onSuccess              | `Method`            | Optional | None                 | Callback method if transaction was successful             |
 | onCancel               | `Method`            | Optional | None                 | Callback method if transaction was cancelled              |
@@ -98,6 +99,7 @@ paymentStart(context){
   closeOnSuccess: false,
   closePrompt: false,
   setAmountByCustomer: false,
+  tokenize: false,
   customization: CustomizationModel(
     borderColor: "#000000",
     backgroundColor: "#004C64",
