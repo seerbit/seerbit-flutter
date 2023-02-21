@@ -20,6 +20,7 @@ class PayloadModel {
   final bool? closeOnSuccess;
   final bool? closePrompt;
   final bool? setAmountByCustomer;
+  final bool? tokenize;
 
   PayloadModel(
       {required this.currency,
@@ -38,6 +39,7 @@ class PayloadModel {
       this.closeOnSuccess,
       this.closePrompt,
       this.setAmountByCustomer,
+      this.tokenize = false,
       this.customization = const CustomizationModel()});
 
   factory PayloadModel.fromJson(Map json) => PayloadModel(
@@ -56,5 +58,6 @@ class PayloadModel {
       setAmountByCustomer: json['SetAmountByCustomer'],
       closePrompt: json['ClosePrompt'],
       closeOnSuccess: json['CloseOnSuccess'],
+      tokenize: json['tokenize'],
       customization: json['customization']);
 }
