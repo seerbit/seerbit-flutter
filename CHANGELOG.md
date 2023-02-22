@@ -28,3 +28,6 @@
 
 ## [0.0.4+3] -11-01-2023
 * Fix payment method data caching that causes duplicate reference.
+
+## [0.0.4+4] -21-02-2023
+* Add tokenize to payload.

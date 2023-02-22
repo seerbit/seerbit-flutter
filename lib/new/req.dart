@@ -51,6 +51,7 @@ String initRequest(
                                   // integrationSource : "mobile-sdk",
                                   "report_link":"${state.reportLink}",
                                   public_key: "${model.publicKey}",
+                                   tokenize: ${model.tokenize},
                                    customization: {
                                       theme: {
                                         border_color: "${model.customization.borderColor}",

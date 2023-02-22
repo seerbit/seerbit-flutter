@@ -67,6 +67,7 @@ class _WebViewOneState extends State<WebViewOne> {
           return false;
         },
         child: SafeArea(
+          top: true,
             child: Column(children: <Widget>[
           WillPopScope(
             onWillPop: () async {
