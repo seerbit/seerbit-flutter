@@ -1,5 +1,5 @@
 <p align="center">
-<img width="400" valign="top" src="https://assets.seerbitapi.com/images/seerbit_logo_type.png" data-canonical-src="https://res.cloudinary.com/dpejkbof5/image/upload/v1620323718/Seerbit_logo_png_ddcor4.png" style="max-width:100%; ">
+<img width="200" valign="top" src="https://assets.seerbitapi.com/images/seerbit_logo_type.png" data-canonical-src="https://assets.seerbitapi.com/images/seerbit_logo_type.png" style="max-width:100%; ">
 </p>
  
 # Seerbit Flutter SDK
@@ -17,6 +17,8 @@ Register for a merchant account on [Seerbit Merchant Dashboard](https://dashboar
    iOS: --ios-language swift, Xcode version >= 12
 ```
  
+ ## Instalation
+
 ```bash
 flutter pub get seerbit_flutter
 ```
@@ -31,7 +33,7 @@ If you have any problems, questions or suggestions, create an issue here or send
  
 ## Implementation
  
-You should already have your API keys. If not, go to [dashboard.seerbitapi.com](https://dashboard.seerbitapi.com).
+You should already have your API keys. If not, go to [dashboard.seerbitapi.com](https://dashboard.seerbitapi.com). Login -> Settings menu -> API Keys menu -> Copy your public key
  
 ## Properties
  
