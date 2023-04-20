@@ -31,3 +31,6 @@
 
 ## [0.0.4+4] -21-02-2023
 * Add tokenize to payload.
+
+## [0.0.4+5] -20-04-2023
+* Add subcription planId to payload.

@@ -50,6 +50,7 @@ class SeerbitTest extends StatelessWidget {
         closePrompt: false,
         setAmountByCustomer: false,
         tokenize: false,
+        planId: "",
         customization: CustomizationModel(
           borderColor: "#000000",
           backgroundColor: "#004C64",

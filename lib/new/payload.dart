@@ -14,9 +14,10 @@ class PayloadModel {
       transRef,
       narrator,
       pocketRef,
-      vendorId;
+      vendorId,
+      planId;
   final String? reportLink;
-  
+
   final bool? closeOnSuccess;
   final bool? closePrompt;
   final bool? setAmountByCustomer;
@@ -40,6 +41,7 @@ class PayloadModel {
       this.closePrompt,
       this.setAmountByCustomer,
       this.tokenize = false,
+      this.planId,
       this.customization = const CustomizationModel()});
 
   factory PayloadModel.fromJson(Map json) => PayloadModel(
@@ -59,5 +61,6 @@ class PayloadModel {
       closePrompt: json['ClosePrompt'],
       closeOnSuccess: json['CloseOnSuccess'],
       tokenize: json['tokenize'],
-      customization: json['customization']);
+      customization: json['customization'],
+      planId: json['planId']);
 }
