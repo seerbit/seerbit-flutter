@@ -36,4 +36,4 @@
 * Add subcription planId to payload.
 
 ## [0.0.4+6] -09-05-2023
-* fix blank screen on report_link.
+* fix blank screen on report_link
