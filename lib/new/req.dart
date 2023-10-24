@@ -18,6 +18,8 @@ String initRequest(
     paymentMethods
         .addAll(List.generate(5 - paymentMethods.length, (index) => ""));
   }
+  String planIdString =
+      model.planId == null ? '"planId": ""' : '"planId": "${model.planId}"';
 
   return """
                                   <!DOCTYPE html>
@@ -52,7 +54,7 @@ String initRequest(
                                   "report_link":"${state.reportLink}",
                                   public_key: "${model.publicKey}",
                                    tokenize: ${model.tokenize},
-                                   planId: "${model.planId}", 
+                                    $planIdString, 
                                    customization: {
                                       theme: {
                                         border_color: "${model.customization.borderColor}",
