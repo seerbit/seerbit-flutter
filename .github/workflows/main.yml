@@ -1,14 +1,14 @@
 on:
   release:
     branches:
-      - dev
+      types: [created]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Install Flutter
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@v4
         with:
           flutter-version: '3.3.3'
       - name: Install dependencies
