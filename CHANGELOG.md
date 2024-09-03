@@ -37,3 +37,6 @@
 
 ## [0.0.4+6] -09-05-2023
 * fix blank screen on report_link
+
+## [0.0.4+7] -09-05-2023
+* update Dart Sdk version

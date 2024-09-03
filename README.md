@@ -11,8 +11,8 @@ Seerbit Flutter SDK can be used to integrate the SeerBit payment gateway into yo
 Register for a merchant account on [Seerbit Merchant Dashboard](https://dashboard.seerbitapi.com) to get started.
  
 ```
-   Dart sdk: ">=2.12.0-0 <3.0.0"
-   Flutter: ">=1.22.2"
+   Dart sdk: ">=3.4.3 <4.0.0"
+   Flutter: ">=1.17.0"
    Android: minSdkVersion 17 and add support for androidx (see AndroidX Migration to migrate an existing app)
    iOS: --ios-language swift, Xcode version >= 12
 ```
