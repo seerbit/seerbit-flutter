@@ -60,7 +60,7 @@ class _WebViewTwoState extends State<WebViewTwo> {
                 children: [
                   InAppWebView(
                     initialUrlRequest:
-                        URLRequest(url: Uri.parse(webViewState.currentUrl)),
+                        URLRequest(url: WebUri(webViewState.currentUrl)),
                     initialOptions: options,
                     gestureRecognizers:
                         [Factory(() => EagerGestureRecognizer())].toSet(),
@@ -87,7 +87,9 @@ class _WebViewTwoState extends State<WebViewTwo> {
 
                         webViewState.controllerOne!.loadUrl(
                             urlRequest: URLRequest(
-                                url: createUri(widget.payload, webViewState)));
+                                url: WebUri(
+                                    createUri(widget.payload, webViewState)
+                                        .toString())));
 
                         ///FIXME:
 
