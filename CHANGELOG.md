@@ -41,5 +41,5 @@
 ## [0.0.4+7] -09-05-2023
 * update Dart Sdk version
 
-## [0.0.4+8] -18-07-2025
+## [0.0.6] -18-07-2025
 * update flutter-in-app-webview version
