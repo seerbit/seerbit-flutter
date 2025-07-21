@@ -42,12 +42,10 @@ class SeerbitTest extends StatelessWidget {
         fullName: "General ZxXXod",
         country: "NG",
         amount: "102",
-        transRef: Random().nextInt(2000).toString(),
+        transRef: DateTime.now().millisecondsSinceEpoch.toString(),
         publicKey: "merchant_public_key",
         pocketRef: "",
-        vendorId: "vendorId",
-        closeOnSuccess: false,
-        closePrompt: false,
+        vendorId: "",
         setAmountByCustomer: false,
         tokenize: false,
         planId: "",
@@ -66,6 +64,10 @@ class SeerbitTest extends StatelessWidget {
         ));
     SeerBit.startPayment(context, payload: payload, onSuccess: (_) {
       print(_);
+      Future.delayed(const Duration(milliseconds: 3000), () {
+        SeerbitMethod.endPayment(context);
+      });
+
     }, onCancel: (_) {
       print('*' * 400);
     });

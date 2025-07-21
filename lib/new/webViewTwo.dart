@@ -17,12 +17,12 @@ class WebViewTwo extends StatefulWidget {
 }
 
 class _WebViewTwoState extends State<WebViewTwo> {
-  // final GlobalKey webViewKeyX = GlobalKey();
+  final GlobalKey webViewKeyX = GlobalKey();
 
   InAppWebViewController? webViewController;
   InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
       crossPlatform: InAppWebViewOptions(
-        useShouldOverrideUrlLoading: true,
+        useShouldOverrideUrlLoading: false,
         mediaPlaybackRequiresUserGesture: false,
       ),
       android: AndroidInAppWebViewOptions(
@@ -59,8 +59,10 @@ class _WebViewTwoState extends State<WebViewTwo> {
               child: Stack(
                 children: [
                   InAppWebView(
-                    initialUrlRequest:
-                        URLRequest(url: Uri.parse(webViewState.currentUrl)),
+                     key: webViewKeyX,
+                        initialUrlRequest: URLRequest(
+                            url: WebUri(createUri(widget.payload, webViewState)
+                                .toString())),
                     initialOptions: options,
                     gestureRecognizers:
                         [Factory(() => EagerGestureRecognizer())].toSet(),
@@ -83,11 +85,11 @@ class _WebViewTwoState extends State<WebViewTwo> {
 
                       if (shouldSwitchView(url.toString(), widget.payload)) {
                         webViewState.setReportLink(url.toString());
-                        print(url.toString());
+                        // print(url.toString());
 
                         webViewState.controllerOne!.loadUrl(
                             urlRequest: URLRequest(
-                                url: createUri(widget.payload, webViewState)));
+                                url: WebUri(createUri(widget.payload, webViewState).toString())));
 
                         ///FIXME:
 
