@@ -95,7 +95,7 @@ paymentStart(context){
   fullName: "General ZxXXod",
   country: "NG",
   amount: "102",
-  transRef: Random().nextInt(2000).toString(),
+  transRef: DateTime.now().millisecondsSinceEpoch.toString(),
   publicKey: "merchant*public_key",
   pocketRef: "",
   vendorId: "vendorId",
@@ -117,8 +117,15 @@ paymentStart(context){
 SeerBit.startPayment(
   context, 
   payload: payload,
-  onSuccess: (*) { print(*);}, 
-  onCancel: (_) { print('_' _ 400);}
+  onSuccess: (_) {
+      print(_);
+      Future.delayed(const Duration(milliseconds: 3000), () {
+        SeerbitMethod.endPayment(context);
+      });
+    },
+  onCancel: (_) {
+      print('*' * 400);
+    }
 );
 
 }
