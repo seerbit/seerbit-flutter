@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:seerbit_flutter/new/customization.dart';
 import 'package:seerbit_flutter/new/methods.dart';
 import 'package:seerbit_flutter/new/payload.dart';
+import 'package:seerbit_flutter/new/split.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,13 +44,22 @@ class SeerbitTest extends StatelessWidget {
         country: "NG",
         amount: "102",
         transRef: DateTime.now().millisecondsSinceEpoch.toString(),
-        publicKey: "merchant_public_key",
+        publicKey: "SBPUBK_V1YL57ICZQSNCADEWE5XEVTNB72TLWZA",
         pocketRef: "",
         vendorId: "",
         setAmountByCustomer: false,
         tokenize: false,
         planId: "",
-        customization: CustomizationModel(
+        //  splits: SplitModel(
+        //   type: "FLAT", //FLAT, PERCENTAGE
+        //   transactionFee: "SUB_ACCOUNT", //  ALL_ACCOUNTS, PROPORTIONATE, SUB_ACCOUNT, PARENT_ACCOUNT
+        //   bearerSubAccountCode: "SUBACCT001",
+        //   items: [
+        //     FeeItem(subAccountCode: "SUBACCT001", value: "3.01"),
+        //     FeeItem(subAccountCode: "ops-costs-2sD4kA", value: "2.00")
+        //   ]
+        // ),
+        customization: const CustomizationModel(
           borderColor: "#000000",
           backgroundColor: "#004C64",
           buttonColor: "#0084A0",
@@ -67,7 +77,6 @@ class SeerbitTest extends StatelessWidget {
       Future.delayed(const Duration(milliseconds: 3000), () {
         SeerbitMethod.endPayment(context);
       });
-
     }, onCancel: (_) {
       print('*' * 400);
     });

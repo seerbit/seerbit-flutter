@@ -43,3 +43,7 @@
 
 ## [0.0.6] -18-07-2025
 * update flutter-in-app-webview version
+
+## [0.0.7] -09-09-2025
+* add support for dynamic split payment
+* update readme.md
