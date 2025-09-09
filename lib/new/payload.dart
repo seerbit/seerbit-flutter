@@ -1,8 +1,10 @@
 ///Model for the Payload  that takes in all the needed payment data
 import "customization.dart";
+import "split.dart";
 
 class PayloadModel {
   final CustomizationModel customization;
+  final SplitModel? splits;
   final String? currency,
       email,
       description,
@@ -42,7 +44,8 @@ class PayloadModel {
       this.setAmountByCustomer,
       this.tokenize = false,
       this.planId,
-      this.customization = const CustomizationModel()});
+      this.customization = const CustomizationModel(),
+      this.splits});
 
   factory PayloadModel.fromJson(Map json) => PayloadModel(
       currency: json["Currency"],
@@ -62,5 +65,6 @@ class PayloadModel {
       closeOnSuccess: json['CloseOnSuccess'],
       tokenize: json['tokenize'],
       customization: json['customization'],
-      planId: json['planId']);
+      planId: json['planId'],
+      splits: json['splits']);
 }

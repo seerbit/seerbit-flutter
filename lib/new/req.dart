@@ -52,7 +52,8 @@ String initRequest(
                                   "report_link":"${state.reportLink}",
                                   public_key: "${model.publicKey}",
                                    tokenize: ${model.tokenize},
-                                   planId: "${model.planId}", 
+                                   planId: "${model.planId}",
+                                  "splits": ${model.splits != null ? jsonEncode(model.splits) : 'null'},
                                    customization: {
                                       theme: {
                                         border_color: "${model.customization.borderColor}",
