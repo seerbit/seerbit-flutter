@@ -54,6 +54,7 @@ String initRequest(
                                    tokenize: ${model.tokenize},
                                    planId: "${model.planId}",
                                   "splits": ${model.splits != null ? jsonEncode(model.splits) : 'null'},
+                                  "meta": ${model.metaData != null ? jsonEncode(model.metaData) : 'null'},
                                    customization: {
                                       theme: {
                                         border_color: "${model.customization.borderColor}",

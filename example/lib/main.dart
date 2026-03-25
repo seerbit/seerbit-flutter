@@ -44,7 +44,7 @@ class SeerbitTest extends StatelessWidget {
         country: "NG",
         amount: "102",
         transRef: DateTime.now().millisecondsSinceEpoch.toString(),
-        publicKey: "SBPUBK_V1YL57ICZQSNCADEWE5XEVTNB72TLWZA",
+        publicKey: "SBTESTPUBK_wLVXnn6YuGaTlOpUESrR7TzFwaDb2auC",
         pocketRef: "",
         vendorId: "",
         setAmountByCustomer: false,

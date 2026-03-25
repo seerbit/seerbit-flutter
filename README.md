@@ -59,6 +59,7 @@ You should already have your API keys. If not, go to [dashboard.seerbitapi.com](
 | onSuccess           | `Method`           | Optional | None               | Callback method if transaction was successful                                                                                                                                                                                           |
 | onCancel            | `Method`           | Optional | None               | Callback method if transaction was cancelled                                                                                                                                                                                            |
 | splits            | `SplitModel`           | Optional | None               | Dynamic split payment - SplitModel(type: "FLAT", transactionFee: "SUB_ACCOUNT", bearerSubAccountCode: "SUBACCT001", items: [FeeItem(subAccountCode: "SUBACCT001", value: "3.01"), FeeItem(subAccountCode: "ops-costs-2sD4kA", value: "2.00")]),                                                                                                                                                                                     |
+| metaData          | `Map<String, dynamic>` | Optional | None               | Additional metadata for the transaction e.g {"orderId": "12345", "itemCount": 3}                                                                                                                                                                                                                                                                                    |
 
 ## Usage
 
@@ -107,6 +108,10 @@ paymentStart(context){
   setAmountByCustomer: false,
   tokenize: false,
   planId: "",
+  metaData: {
+    "orderId": "12345",
+    "productName": "Sneakers",
+  },
   splits: SplitModel(
     type: "FLAT",
     transactionFee: "SUB_ACCOUNT", //  ALL_ACCOUNTS, PROPORTIONATE, SUB_ACCOUNT, PARENT_ACCOUNT

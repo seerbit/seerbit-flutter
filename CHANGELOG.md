@@ -47,3 +47,7 @@
 ## [0.0.7] -09-09-2025
 * add support for dynamic split payment
 * update readme.md
+
+## [0.0.8] -25-03-2026
+* add support for metadata
+* update readme.md

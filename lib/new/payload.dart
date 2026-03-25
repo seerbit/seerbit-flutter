@@ -24,6 +24,7 @@ class PayloadModel {
   final bool? closePrompt;
   final bool? setAmountByCustomer;
   final bool? tokenize;
+  final Map<String, dynamic>? metaData;
 
   PayloadModel(
       {required this.currency,
@@ -44,6 +45,7 @@ class PayloadModel {
       this.setAmountByCustomer,
       this.tokenize = false,
       this.planId,
+      this.metaData,
       this.customization = const CustomizationModel(),
       this.splits});
 
@@ -66,5 +68,6 @@ class PayloadModel {
       tokenize: json['tokenize'],
       customization: json['customization'],
       planId: json['planId'],
+      metaData: json['metaData'],
       splits: json['splits']);
 }
