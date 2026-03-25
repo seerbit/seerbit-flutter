@@ -34,8 +34,7 @@ String initRequest(
                              </form>
                              <script>
                              function paywithSeerbit() {
-                              SeerbitPay(
-                                {
+                              var payload = {
                                   tranref: "${model.transRef}",
                                   currency: "${model.currency}",
                                   description: "${model.description}",
@@ -69,8 +68,9 @@ String initRequest(
                                       confetti: ${model.customization.confetti}, // false;
                                       logo: "${model.customization.logo}",
                                     }
-                                  ,
-                                },
+                              };
+                              SeerbitPay(
+                                payload,
                                 function callback(response) {
                                    window.flutter_inappwebview
                                     .callHandler('success', JSON.stringify(response));
