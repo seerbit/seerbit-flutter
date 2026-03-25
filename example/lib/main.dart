@@ -50,6 +50,10 @@ class SeerbitTest extends StatelessWidget {
         setAmountByCustomer: false,
         tokenize: false,
         planId: "",
+        metaData: {
+          "orderId": "12345",
+          "productName": "Sneakers",
+        },
         //  splits: SplitModel(
         //   type: "FLAT", //FLAT, PERCENTAGE
         //   transactionFee: "SUB_ACCOUNT", //  ALL_ACCOUNTS, PROPORTIONATE, SUB_ACCOUNT, PARENT_ACCOUNT
@@ -72,8 +76,8 @@ class SeerbitTest extends StatelessWidget {
           confetti: false,
           logo: "logo_url || base64",
         ));
-    SeerBit.startPayment(context, payload: payload, onSuccess: (_) {
-      print(_);
+    SeerBit.startPayment(context, payload: payload, onSuccess: (response) {
+      print(response);
       Future.delayed(const Duration(milliseconds: 3000), () {
         SeerbitMethod.endPayment(context);
       });
